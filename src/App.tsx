@@ -2,22 +2,17 @@ import "./index.css";
 import { CartStore } from "./store/CartStore";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { HomeProducts } from "./pages/HomeProducts";
+import { Banner } from "./components/Banner";
+import { TopRated } from "./components/TopRated";
+import { AppRouter } from "./AppRouter";
 
 function App() {
   return (
     <>
-      {" "}
-      <CartStore>
-        <Header />
-        <main className="overflow-x-hidden  ">
-          <section className=" min-h-screen flex-col">
-            <HomeProducts />
-          </section>
-
-          <Footer />
-        </main>
-      </CartStore>
+      <div className="min-h-screen">
+        <AppRouter />
+      </div>
+      <Footer />
     </>
   );
 }

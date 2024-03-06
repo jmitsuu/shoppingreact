@@ -1,14 +1,16 @@
 import { Cart } from "./Cart";
+import { Link } from "react-router-dom";
+
 
 export const Header = () => {
   return (
-    <header className="w-screen h-28 flex justify-center  items-center border-b-[0.1rem] bg-[#CCCCFE] mb-10 z-50 relative">
-      <nav className="flex w-screen h-28 text-gray-600 text-xl font-bold items-center justify-center   ">
-        <div className="flex w-screen px-10 h-28 fixed justify-between items-center bg-[#CCCCFE]">
+    <header className=" h-28 bg-white w-screen fixed flex justify-center  items-center  z-50 ">
+      <nav className="flex  text-gray-600 text-xl font-bold items-center justify-center   ">
+        <div className="flex w-screen px-10 h-28 fixed justify-between items-center bg-white container ">
           <ul className="flex gap-6">
-            <li className="cursor-pointer">Home</li>
+            <Link to={"/"} className="cursor-pointer">Home</Link>
             <li className="cursor-pointer">
-              <a href="/produtos">Produtos</a>
+              <Link to={"/sobre"}> Sobre</Link>
             </li>
           </ul>
           <div className="">

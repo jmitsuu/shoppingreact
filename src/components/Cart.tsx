@@ -27,13 +27,13 @@ export function Cart() {
         <span className="absolute bottom-6 text-xs">{cart.length} </span>
         <RiShoppingCart2Fill className="text-3xl cursor-pointer hover:text-slate-500" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="absolute right-0  xl:min-w-96 p-2">
+      <DropdownMenuContent className="absolute right-0 z-50 bg-slate-200 xl:min-w-96 p-2">
         <DropdownMenuLabel>Carrinho</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         {cart.map((el: arrItems) => {
           return (
-            <DropdownMenuItem className="gap-8 flex items-center m-auto">
+            <DropdownMenuItem className="gap-8 flex items-center m-auto z-50  bg-slate-300" key={el._id}>
               <img src={el.image_url} className="h-10  rounded-sm" />
               <h1 className="text-[0.7rem] lowercase w-full">{el.title}</h1>
               <h2 className="w-full text-xs">{el.price} R$</h2>
