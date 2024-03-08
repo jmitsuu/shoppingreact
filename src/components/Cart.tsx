@@ -1,7 +1,7 @@
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import { FaTrashCan } from "react-icons/fa6";
 import { useCart } from "../store/CartStore";
-import { arrItems } from "@/hooks/ProductInterface";
+import { arrItems } from "@/interfaces/ProductInterface";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -33,7 +33,10 @@ export function Cart() {
 
         {cart.map((el: arrItems) => {
           return (
-            <DropdownMenuItem className="gap-8 flex items-center m-auto z-50  bg-slate-300" key={el._id}>
+            <DropdownMenuItem
+              className="gap-8 flex items-center m-auto z-50  bg-slate-300"
+              key={el._id}
+            >
               <img src={el.image_url} className="h-10  rounded-sm" />
               <h1 className="text-[0.7rem] lowercase w-full">{el.title}</h1>
               <h2 className="w-full text-xs">{el.price} R$</h2>

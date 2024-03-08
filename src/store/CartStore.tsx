@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import { arrItems } from "../hooks/ProductInterface";
+import { arrItems } from "../interfaces/ProductInterface";
 
 export const cartContext = createContext<any>([]);
 

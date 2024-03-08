@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import instance from "../http/instance";
 import Products from "../components/Products";
-import { arrItems } from "../hooks/ProductInterface";
+import { arrItems } from "../interfaces/ProductInterface";
 import { Banner } from "@/components/Banner";
 import { TopRated } from "@/components/TopRated";
 

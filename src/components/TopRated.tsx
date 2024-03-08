@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import instance from "../http/instance";
-import { arrItems } from "@/hooks/ProductInterface";
+import { arrItems } from "@/interfaces/ProductInterface";
 import { Comments } from "./Comments";
 import Products from "./Products";
 
@@ -22,7 +22,7 @@ export function TopRated() {
         image_url: produInfo.image_url,
         comentario: item.comentario,
         price: produInfo.price,
-        id_comentario:item.id_comentario,
+        id_comentario: item.id_comentario,
         name: item.name,
         voto: item.voto,
       };

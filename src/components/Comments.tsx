@@ -1,4 +1,4 @@
-import { arrItems } from "@/hooks/ProductInterface";
+import { arrItems } from "@/interfaces/ProductInterface";
 
 export function Comments(props: arrItems) {
   return (
