@@ -4,6 +4,7 @@ import Products from "../components/Products";
 import { arrItems } from "../interfaces/ProductInterface";
 import { Banner } from "@/components/Banner";
 import { TopRated } from "@/components/TopRated";
+import { Link } from "react-router-dom";
 
 export function HomeProducts() {
   const [results, setResults] = useState([]);
@@ -41,7 +42,7 @@ export function HomeProducts() {
         <h1 className="text-gray-500 uppercase mb-10 text-center font-bold xl:text-3xl">
           Moda feita para voce
         </h1>
-        <div className=" grid xl:grid-cols-6 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <div className=" grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {results.map((item: arrItems) => {
             return (
               <Products
@@ -55,9 +56,9 @@ export function HomeProducts() {
           })}
         </div>
         <h1 className="text-center mt-10">
-          <a className="py-3 px-4 bg-slate-200 rounded-xl text-slate-600 font-bold cursor-pointer">
+          <Link to={"/listacompleta"} className="py-3 px-4 bg-slate-200 rounded-xl text-slate-600 font-bold cursor-pointer">
             Ver Mais
-          </a>
+          </Link>
         </h1>
       </section>
     </>

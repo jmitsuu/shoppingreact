@@ -2,7 +2,7 @@
 export interface arrItems{
   _id?: number;
   title?: string;
-  price?: string;
+  price?: number;
   image_url?:string;
   voto?:number | undefined,
   comentario?:string,
