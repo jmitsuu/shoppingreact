@@ -2,7 +2,6 @@ import { RiShoppingCart2Fill } from "react-icons/ri";
 import { FaTrashCan } from "react-icons/fa6";
 import { useCart } from "../store/CartStore";
 import { arrItems } from "@/interfaces/ProductInterface";
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 export function Cart() {
   const { cart } = useCart();
-  const [dropCart, setDropCart] = useState<boolean>(false);
 
   if (cart.length === 0) {
     return (

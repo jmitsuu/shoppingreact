@@ -5,7 +5,6 @@ export const cartContext = createContext<any>([]);
 
 export function CartStore({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<arrItems[]>([]);
-
   function addToCart(item: arrItems) {
     if (!item) return;
     const findItem = cart.findIndex((el) => el._id == item._id);

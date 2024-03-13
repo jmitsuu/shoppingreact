@@ -1,6 +1,6 @@
 export function Banner() {
   return (
-    <div className="bg-hero-bnn xl:w-[2000px] md:w-[1500px] w-[700px] left-[-40px] bg-center bg-cover flex items-center justify-center -rotate-3 xl:left-[-30px] bg-[#73D8DA]  h-[700px]  mb-10  relative">
+    <div className="bg-hero-bnn mb-32 xl:w-[2000px] md:w-[1500px] w-[700px] left-[-40px] bg-center bg-cover flex items-center justify-center -rotate-3 xl:left-[-30px] bg-[#73D8DA]  h-[700px]  relative">
       <div className="w-screen">
         <div className="container flex justify-between  m-auto  rotate-3 ">
           <div className=" space-y-8 ">
@@ -13,7 +13,7 @@ export function Banner() {
             <p className="text-slate-700 xl:text-xl">
               Encontre um estilo para todos os gostos e bolsos.
             </p>
-            <button className="bg-orange-500 px-2 py-3 rounded-md text-gray-100 uppercase font-semibold">
+            <button className="bg-orange-500 px-2 rounded py-3  text-gray-100 uppercase font-semibold">
               Quero Conhecer
             </button>
           </div>

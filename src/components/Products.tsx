@@ -1,15 +1,22 @@
 import { useCart } from "../store/CartStore";
+import { Link, ScrollRestoration } from "react-router-dom";
 
 export function Products(props: any) {
-  const { addToCart, cart } = useCart();
+  const { addToCart } = useCart();
 
   return (
-    <main className="   flex justify-center  items-center  ">
-      <div className=" w-72 h-96 m-2 p-2 border-[0.1rem] border-gray-100/80 rounded-md flex flex-col items-center">
-        <img
-          className="h-44 m-auto scale-100 hover:scale-105 shadow-xl transition duration-300 hover:shadow-blue-600/10 cursor-pointer"
-          src={props.image_url}
-        />
+    <main className="   flex justify-center   items-center  ">
+      <div className=" w-72 h-96 m-2 p-2 border-[0.1rem] border-gray-100/80 rounded-xl flex flex-col items-center">
+        <Link
+          preventScrollReset={true}
+          className="h-full w-full"
+          to={props.title.replaceAll(" ", "-").toLowerCase()}
+        >
+          <img
+            className="h-44 m-auto scale-100 hover:scale-105 transition duration-300 cursor-pointer rounded-xl "
+            src={props.image_url}
+          />
+        </Link>
 
         <div className="flex justify-between w-full">
           <div className=" text-left relative">

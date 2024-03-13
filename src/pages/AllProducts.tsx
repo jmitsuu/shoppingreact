@@ -12,7 +12,7 @@ const Selectitems = [
     item: "Menor preço",
   },
   {
-    item: "Todos",
+    item: "Aleatorio",
   },
 ];
 export function AllProducts() {
@@ -26,22 +26,31 @@ export function AllProducts() {
         if (!method) {
           setResults(limitedData);
         }
-        if (method == "Todos") {
+        if (method == "Aleatorio") {
           setResults(limitedData);
         }
         if (method == "Menor preço") {
           setResults([]);
-          const newRes = res.data.sort((a: any, b: any) => a.price - b.price);
+          const newRes = res.data.sort(
+            (a: { price: number }, b: { price: number }) => a.price - b.price
+          );
           setResults(newRes);
         }
         if (method == "Maior preço") {
           setResults([]);
-          const newRes = res.data.sort((a: any, b: any) => b.price - a.price);
+          const newRes = res.data.sort(
+            (a: { price: number }, b: { price: number }) => b.price - a.price
+          );
           setResults(newRes);
         }
       })
+
       .catch((err) => console.log("ops!", err));
   };
+  function startFromTop() {
+    window.scrollTo(0, 0);
+  }
+  startFromTop();
 
   useEffect(() => {
     if (method) {
@@ -53,13 +62,13 @@ export function AllProducts() {
   return (
     <div className="p-5 w-screen h-full">
       <div className="w-full container">
-        <div className="flex justify-between">
+        <div className="flex justify-between container">
           <h1 className="font-bold text-xl text-slate-700">
             Todos os produtos
           </h1>
           <div>
             <SelectC
-              title="Todos"
+              title="Ordenar"
               arrItems={Selectitems}
               selectMethod={method}
               controlMethod={setMethod}
@@ -70,7 +79,7 @@ export function AllProducts() {
           {results.map((item: arrItems) => {
             return (
               <Products
-                key={item._id}
+               key={item._id}
                 title={item.title}
                 price={item.price}
                 image_url={item.image_url}

@@ -1,6 +1,7 @@
 import { Cart } from "./Cart";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
+// import { ModalAside } from "./ModalAside";
 
 export const Header = () => {
   return (
@@ -8,7 +9,7 @@ export const Header = () => {
       <nav className="flex  text-gray-600 text-md font-bold items-center justify-center   ">
         <div className="flex w-screen px-10 h-16 z-50 fixed justify-between items-center bg-white  ">
           <ul className="flex gap-6 items-center">
-            <FaBars />
+            {/* <ModalAside icon={<FaBars />} /> */}
             <Link to={"/"} className="cursor-pointer  hover:border-b-[0.1em]">
               Shop
             </Link>

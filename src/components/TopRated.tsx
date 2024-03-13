@@ -28,7 +28,7 @@ export function TopRated() {
       };
     });
     const limitedArr = newTopRated.slice(0, 5);
-    console.log(topRated);
+    console.log(limitedArr);
     setResults(limitedArr);
   }
 
@@ -37,8 +37,8 @@ export function TopRated() {
   }, []);
 
   return (
-    <div className="w-screen   bg-white relative mb-20 mt-5 ">
-      <div className="w-full container    flex justify-center items-center">
+    <div className="w-screen mb-32  bg-white relative mt-5 ">
+      <div className="w-full container mb-32    flex justify-center items-center">
         <div className="text-center flex flex-col  min-h-96  justify-center items-center ">
           <p className="text-gray-400">Nosso produtos</p>
           <h1 className="text-gray-500 uppercase font-bold xl:text-3xl">
@@ -60,14 +60,14 @@ export function TopRated() {
           </div>
         </div>
       </div>
-      <div className="w-screen  flex-col items-center justify-center bg-slate-100 h-80 flex mt-10 ">
-        <div className="text-center">
+      <div className="w-screen   mb-32 flex-col items-center justify-center bg-slate-100 flex mt-10 ">
+        <div className="text-center mt-10">
           <h1 className="text-gray-500 uppercase font-bold xl:text-3xl">
             Depoimentos
           </h1>
         </div>
 
-        <div className=" w-full  flex justify-center items-center container  gap-4 p-10 bg-slate-100 rounded-3xl">
+        <div className=" w-full flex justify-center  container  gap-4 p-10 h-80 text-center  bg-slate-100 rounded-3xl">
           {results.map((comm: arrItems) => {
             return (
               <Comments

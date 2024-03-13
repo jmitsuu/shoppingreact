@@ -14,7 +14,7 @@ interface arrSelect {
 export function SelectC(props: arrSelect) {
   return (
     <Select value={props.selectMethod} onValueChange={props.controlMethod}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px]  border-slate-200">
         <SelectValue placeholder={props.title} />
       </SelectTrigger>
       <SelectContent className="bg-white">

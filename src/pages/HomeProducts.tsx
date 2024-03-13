@@ -33,7 +33,7 @@ export function HomeProducts() {
 
   return (
     <>
-      <section className="min-h-screen flex-col">
+      <section className="min-h-screen flex-col mb-32">
         <div className="overflow-hidden">
           <Banner />
           <TopRated />
@@ -42,7 +42,7 @@ export function HomeProducts() {
         <h1 className="text-gray-500 uppercase mb-10 text-center font-bold xl:text-3xl">
           Moda feita para voce
         </h1>
-        <div className=" grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <div className=" mb-32 grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {results.map((item: arrItems) => {
             return (
               <Products
@@ -56,7 +56,10 @@ export function HomeProducts() {
           })}
         </div>
         <h1 className="text-center mt-10">
-          <Link to={"/listacompleta"} className="py-3 px-4 bg-slate-200 rounded-xl text-slate-600 font-bold cursor-pointer">
+          <Link
+            to={"/listacompleta"}
+            className="py-3 px-4 bg-slate-200 rounded-xl text-slate-600 font-bold cursor-pointer"
+          >
             Ver Mais
           </Link>
         </h1>
