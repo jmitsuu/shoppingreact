@@ -1,24 +1,26 @@
 import { Button } from "@/components/ui/button";
-import { useProducts } from "@/hooks/useProducts";
-import { useComments } from "@/hooks/useComments";
 import { useParams } from "react-router";
 import { arrItems } from "@/interfaces/ProductInterface";
+import { useCart } from "@/store/CartStore";
+import { FetchProducts } from "@/store/FetchProducts";
+import { FetchComments } from "@/store/FetchComments";
 
 export function InfoProduct() {
-  const { results, loading } = useProducts();
-  const { comments, loadingComments } = useComments();
-  const { id } = useParams();
-  const findItem = results.find((el: any) => {
-    if (el.title.replaceAll(" ", "-").toLowerCase() === id) {
+  const { addToCart } = useCart();
+  const { products, isLoading } = FetchProducts();
+  const { comments, loadComments } = FetchComments();
+  const { id: title } = useParams();
+  if (isLoading || loadComments) return;
+  const findItem = products.find((el: any) => {
+    if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
       return el;
     }
   });
-
   const findComment = comments.filter(
-    (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === id
+    (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === title
   );
 
-  if (loading || loadingComments) {
+  if (isLoading || loadComments) {
     return <div className="text-center">Carrgando...</div>;
   }
 
@@ -26,10 +28,13 @@ export function InfoProduct() {
     <div className="w-full justify-center container items-center  flex flex-col">
       <div className=" xl:min-h-[600px] xl:min-w-[900px] border-[0.1px] rounded-xl mb-24 mt-10">
         <div className="xl:flex p-8 justify-between">
-          <div className="w-96  ">
-            <img src={findItem.image_url} className="h-96 w-80" />
-            <div className="text-slate-700">
-              <h1>Descrição:</h1>
+          <div className=" w-80  overflow-hidden">
+            <img
+              src={findItem.image_url}
+              className="h-96  rounded-md  w-full"
+            />
+            <div className="text-slate-700 mt-10">
+              <h1 className="text-slate-600 font-semibold">Descrição:</h1>
               <p className="font-bold text-[12px] w-80">
                 {findItem.description}
               </p>
@@ -84,7 +89,12 @@ export function InfoProduct() {
                 </div>
               </div>
               <div>
-                <Button className="bg-green-500 hover:bg-green-900 rounded text-slate-100 float-right">
+                <Button
+                  className="bg-green-500 hover:bg-green-900 rounded text-slate-100 float-right"
+                  onClick={() => {
+                    addToCart(findItem);
+                  }}
+                >
                   Adicionar ao carrinho{" "}
                 </Button>
               </div>

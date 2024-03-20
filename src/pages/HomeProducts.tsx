@@ -1,29 +1,13 @@
-import { useEffect, useState } from "react";
-import instance from "../http/instance";
 import Products from "../components/Products";
 import { arrItems } from "../interfaces/ProductInterface";
 import { Banner } from "@/components/Banner";
 import { TopRated } from "@/components/TopRated";
 import { Link } from "react-router-dom";
-
+import { FetchProducts } from "@/store/FetchProducts";
 export function HomeProducts() {
-  const [results, setResults] = useState([]);
+  const { products, isLoading } = FetchProducts();
 
-  const getProducts = async () => {
-    return await instance
-      .get("/products")
-      .then((res) => {
-        const limitedData = res.data.slice(0, 10);
-        setResults(limitedData);
-      })
-      .catch((err) => console.log("ops!", err));
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  if (results.length === 0) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center">
         <h1 className="m-auto text-gray-500 text-2xl">Carregando...</h1>
@@ -36,14 +20,14 @@ export function HomeProducts() {
       <section className="min-h-screen flex-col mb-32">
         <div className="overflow-hidden">
           <Banner />
-          <TopRated />
+          <TopRated items={products} />
         </div>
 
-        <h1 className="text-gray-500 uppercase mb-10 text-center font-bold xl:text-3xl">
+        <h1 className="text-gray-500 uppercase mb-10 text-center font-bold xl:text-4xl ">
           Moda feita para voce
         </h1>
         <div className=" mb-32 grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-          {results.map((item: arrItems) => {
+          {products.slice(0, 10).map((item: arrItems) => {
             return (
               <Products
                 key={item._id}

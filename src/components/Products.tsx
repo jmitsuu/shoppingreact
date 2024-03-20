@@ -1,5 +1,5 @@
 import { useCart } from "../store/CartStore";
-import { Link, ScrollRestoration } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Products(props: any) {
   const { addToCart } = useCart();
@@ -13,7 +13,7 @@ export function Products(props: any) {
           to={props.title.replaceAll(" ", "-").toLowerCase()}
         >
           <img
-            className="h-44 m-auto scale-100 hover:scale-105 transition duration-300 cursor-pointer rounded-xl "
+            className="h-64 m-auto scale-100 hover:scale-105 transition duration-300 cursor-pointer rounded-md "
             src={props.image_url}
           />
         </Link>
