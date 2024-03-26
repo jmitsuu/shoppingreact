@@ -8,7 +8,7 @@ export function CartStore({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<arrItems[]>([]);
   const [total, setTotal] = useState(0);
 
-  function addToCart(item: any) {
+  function addToCart(item: arrItems) {
     if (!item || !item._id) return;
 
     const findItem = cart.findIndex((el) => el._id === item._id);
@@ -19,7 +19,7 @@ export function CartStore({ children }: { children: React.ReactNode }) {
         description: "o item ja foi adicionado ao carrinho.",
       });
     } else {
-      setCart((state: any) => [...state, item]);
+      setCart((state: arrItems[]) => [...state, item]);
       toast({
         variant: "sucess",
         title: "Adicionado!",
@@ -27,7 +27,7 @@ export function CartStore({ children }: { children: React.ReactNode }) {
       });
     }
   }
-  function removeItem(item: any) {
+  function removeItem(item: arrItems) {
     if (!item || !item._id) return;
 
     const updatedCart = cart.filter((el) => el._id !== item._id);
@@ -36,7 +36,7 @@ export function CartStore({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const totalPrice = cart.reduce(
-      (acc: number, item: any) => acc + item.price,
+      (acc: number, item) => acc + Number(item.price),
       0
     );
     setTotal(totalPrice);

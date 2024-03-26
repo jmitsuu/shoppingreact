@@ -1,13 +1,6 @@
 import { useCount } from "@/hooks/useCount";
-import { useEffect } from "react";
-
 export function Count() {
   const { more, less, count } = useCount();
-
-  useEffect(() => {
-    const changeEl = document.getElementsByClassName("elementCount");
-    changeEl[0].innerHTML = `${count}`;
-  }, [count]);
 
   return (
     <div className="flex gap-2">

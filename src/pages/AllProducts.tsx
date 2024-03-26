@@ -70,7 +70,7 @@ export function AllProducts() {
   return (
     <div className="p-5 w-screen h-full">
       <div className="w-full container">
-        <div className="xl:flexjustify-between container">
+        <div className="xl:flex justify-between container">
           <h1 className="font-bold  xl:mb-0 mb-5  text-xl text-slate-700">
             Todos os produtos
           </h1>

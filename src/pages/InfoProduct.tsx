@@ -5,7 +5,7 @@ import { useCart } from "@/store/CartStore";
 import { FetchProducts } from "@/store/FetchProducts";
 import { FetchComments } from "@/store/FetchComments";
 import { NewToogle } from "@/components/NewToogle";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCount } from "@/hooks/useCount";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
@@ -17,19 +17,11 @@ export function InfoProduct() {
   const { comments, loadComments } = FetchComments();
   const [inputColor, setInputColor] = useState("preto");
   const [inputSize, setInputSize] = useState("");
-  const [newResults, setNewResults] = useState<any>([]);
   const { more, less, count } = useCount();
   const { toast } = useToast();
   const { id: title } = useParams();
-  useEffect(() => {
-    if (!newResults) return;
-    if (inputSize && count) {
-      incrementCart();
-      count;
-    }
-  }, [inputSize, count]);
-  if (isLoading || loadComments) return;
 
+  if (isLoading || loadComments) return;
   const findItem = products.find((el: any) => {
     if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
       return el;
@@ -39,13 +31,6 @@ export function InfoProduct() {
     (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === title
   );
 
-  if (isLoading || loadComments) {
-    return (
-      <div className="flex justify-center items-center">
-        <Spinner />{" "}
-      </div>
-    );
-  }
   const sizeProdu = [
     {
       item: "P",
@@ -77,6 +62,7 @@ export function InfoProduct() {
       title: "azul",
     },
   ];
+
   function incrementCart() {
     if (!inputSize) {
       toast({
@@ -85,7 +71,7 @@ export function InfoProduct() {
         description: "Voce precisa selecionar um tamanho.",
       });
     } else {
-      if (!findItem || !newResults) {
+      if (!findItem) {
         return;
       } else {
         const newItems = {
@@ -94,11 +80,16 @@ export function InfoProduct() {
           size: inputSize,
           amout: count,
         };
-
-        if (!newItems) return;
-        setNewResults(newItems);
+        addToCart(newItems);
       }
     }
+  }
+  if (isLoading || loadComments) {
+    return (
+      <div className="flex justify-center items-center">
+        <Spinner />{" "}
+      </div>
+    );
   }
 
   return (
@@ -182,12 +173,7 @@ export function InfoProduct() {
 
               <div className="xl:flex xl:flex-row  gap-5   w-full justify-center items-center flex-col flex">
                 <div onClick={incrementCart}>
-                  <Button
-                    className="bg-green-500 hover:bg-green-900 rounded xl:mb-0 mb-5 text-slate-100 "
-                    onClick={() => {
-                      addToCart(newResults);
-                    }}
-                  >
+                  <Button className="bg-green-500 hover:bg-green-900 rounded xl:mb-0 mb-5 text-slate-100 ">
                     Adicionar ao carrinho{" "}
                   </Button>
                 </div>

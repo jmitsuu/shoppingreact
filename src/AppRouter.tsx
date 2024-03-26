@@ -3,7 +3,7 @@ import { HomeProducts } from "./pages/HomeProducts";
 import { AboutUs } from "./pages/AboutUs";
 import { AllProducts } from "./pages/AllProducts";
 import { InfoProduct } from "./pages/InfoProduct";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect  } from "react";
 import { CheckItems } from "./pages/checkoutcart/CheckItems";
 import { Payment } from "./pages/checkoutcart/Payment";
 import { Bag } from "./pages/Bag";

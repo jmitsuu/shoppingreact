@@ -45,9 +45,9 @@ export function ModalAside(props: any) {
           >
             X
           </span>
-          <h1 className="text-center text-3xl mt-5 mb-10">Carrinho</h1>
+          <h1 className="text-center text-3xl mt-5 mb-5">Carrinho</h1>
           <div className="h-full relative flex flex-col">
-            <div className="h-[700px] md:h-[900px] w-full  overflow-y-auto py-4 px-2 border rounded-md">
+            <div className="h-[700px] md:h-[300px] w-full  overflow-y-auto py-4 px-2 border rounded-md">
               <ul className="flex flex-col">
                 {cart.map((el: arrItems, index: number) => {
                   return (
@@ -100,11 +100,11 @@ export function ModalAside(props: any) {
                 {total} R$
               </span>
             </h1>
-            <div className="flex h-full justify-center  float-end   items-center  w-full">
+            <div className="flex  justify-center mt-5   items-center  w-full">
               {/* {spinner && <Spinner />} */}
               <div onClick={closeModal}>
                 <Link to={"check/cart"}>
-                  <button className="px-2 py-2 rounded-md ml-10  right-0  text-slate-100 hover:bg-green-700 bg-green-500 transition">
+                  <button className="px-2 py-2 rounded-md  text-slate-100 hover:bg-green-700 bg-green-500 transition">
                     Finalizar Compra
                   </button>
                 </Link>

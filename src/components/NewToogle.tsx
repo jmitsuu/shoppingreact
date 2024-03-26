@@ -16,7 +16,7 @@ export function NewToogle(props: itemPro) {
     >
       {props.toogleItems.map((el: { color: string; item: string }) => {
         return (
-          <ToggleGroupItem className={`${el.color}`} value={el.item}>
+          <ToggleGroupItem key={el.item} className={`${el.color}`} value={el.item}>
             <span className={props.toogleStyle}> {el.item}</span>
           </ToggleGroupItem>
         );
