@@ -10,5 +10,8 @@ export interface arrItems{
   id_comentario?:number,
   name?:string,
   item?:object,
+  amout?:number,
+  size?:string,
+  color?:string
   
 }

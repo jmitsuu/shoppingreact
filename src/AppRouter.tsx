@@ -4,6 +4,9 @@ import { AboutUs } from "./pages/AboutUs";
 import { AllProducts } from "./pages/AllProducts";
 import { InfoProduct } from "./pages/InfoProduct";
 import { useLayoutEffect } from "react";
+import { CheckItems } from "./pages/checkoutcart/CheckItems";
+import { Payment } from "./pages/checkoutcart/Payment";
+import { Bag } from "./pages/Bag";
 
 export function AppRouter() {
   const location = useLocation();
@@ -19,6 +22,10 @@ export function AppRouter() {
         <Route path="/listacompleta/:id" element={<InfoProduct />} />
         <Route path="/sobre" element={<AboutUs />} />
         <Route path="/:id" element={<InfoProduct />} />
+        <Route path="/check" element={<Bag />}>
+          <Route path="cart" element={<CheckItems />} />
+          <Route path="payment" element={<Payment />} />
+        </Route>
       </Routes>
     </>
   );

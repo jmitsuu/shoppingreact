@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export const Footer = () => {
   return (
     <footer
-      className="w-screen mt-10   h-80 border-t-[0.1rem] bg-gradient-to-tr from-[#303164]
+      className="w-screen mt-10   md:h-80 border-t-[0.1rem] bg-gradient-to-tr from-[#303164]
     via-[#483584]
     to-[#303164]
     "
@@ -17,19 +17,17 @@ export const Footer = () => {
             <Input
               type="text"
               placeholder="Inscreva-se aqui.."
-              className="w-96 h-10 rounded bg-white"
+              className="md:w-96  rounded bg-white"
             />
-            <Button className="float-right  bg-white rounded hover:bg-slate-200">
-              Inscrever
-            </Button>
+            <Button className="float-right ">Inscrever</Button>
           </div>
         </div>
-        <div className="w-full border-t-[1px] relative mt-10 flex items-center h-full">
-          <div className="w-32 text-3xl border-r-[1px] pr-40 ">
+        <div className="w-full border-t-[1px] p-2 relative mt-10 flex items-center h-full">
+          <div className="md:w-32 w-10 text-3xl md:border-r-[1px] border-b md:border-b-0 md:pr-40 pr-24 ">
             <span className="text-slate-400">Shopping</span>{" "}
             <span className="font-bold text-slate-300">Oriaj.</span>
           </div>
-          <div className="flex items justify-center w-full">
+          <div className="flex md:flex-row flex-col items justify-center w-full">
             <div className="  ml-20">
               <h1 className="text-blue-400 font-bold">Nossas Redes</h1>
               <ul>

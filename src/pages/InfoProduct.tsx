@@ -4,13 +4,32 @@ import { arrItems } from "@/interfaces/ProductInterface";
 import { useCart } from "@/store/CartStore";
 import { FetchProducts } from "@/store/FetchProducts";
 import { FetchComments } from "@/store/FetchComments";
+import { NewToogle } from "@/components/NewToogle";
+import { useEffect, useState } from "react";
+import { useCount } from "@/hooks/useCount";
+import { useToast } from "@/components/ui/use-toast";
+import { Link } from "react-router-dom";
+import { Spinner } from "@/components/Spinner";
 
 export function InfoProduct() {
   const { addToCart } = useCart();
   const { products, isLoading } = FetchProducts();
   const { comments, loadComments } = FetchComments();
+  const [inputColor, setInputColor] = useState("preto");
+  const [inputSize, setInputSize] = useState("");
+  const [newResults, setNewResults] = useState<any>([]);
+  const { more, less, count } = useCount();
+  const { toast } = useToast();
   const { id: title } = useParams();
+  useEffect(() => {
+    if (!newResults) return;
+    if (inputSize && count) {
+      incrementCart();
+      count;
+    }
+  }, [inputSize, count]);
   if (isLoading || loadComments) return;
+
   const findItem = products.find((el: any) => {
     if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
       return el;
@@ -21,26 +40,84 @@ export function InfoProduct() {
   );
 
   if (isLoading || loadComments) {
-    return <div className="text-center">Carrgando...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        <Spinner />{" "}
+      </div>
+    );
+  }
+  const sizeProdu = [
+    {
+      item: "P",
+    },
+    {
+      item: "M",
+    },
+    {
+      item: "G",
+    },
+    {
+      item: "GG",
+    },
+  ];
+  const colors = [
+    {
+      item: "preto ",
+      color: "bg-black",
+      title: "preto",
+    },
+    {
+      item: "vermelho ",
+      color: "bg-red-500",
+      title: "vermelho",
+    },
+    {
+      item: "azul",
+      color: "bg-blue-500",
+      title: "azul",
+    },
+  ];
+  function incrementCart() {
+    if (!inputSize) {
+      toast({
+        variant: "alert",
+        title: "Aviso!",
+        description: "Voce precisa selecionar um tamanho.",
+      });
+    } else {
+      if (!findItem || !newResults) {
+        return;
+      } else {
+        const newItems = {
+          ...findItem,
+          color: inputColor,
+          size: inputSize,
+          amout: count,
+        };
+
+        if (!newItems) return;
+        setNewResults(newItems);
+      }
+    }
   }
 
   return (
     <div className="w-full justify-center container items-center  flex flex-col">
-      <div className=" xl:min-h-[600px] xl:min-w-[900px] border-[0.1px] rounded-xl mb-24 mt-10">
-        <div className="xl:flex p-8 justify-between">
-          <div className=" w-80  overflow-hidden">
+      <div className=" xl:min-h-[600px] xl:w-[900px] w-full border rounded-xl mb-24 mt-10">
+        <div className="xl:flex p-8 justify-center items-center">
+          <div className=" md:w-80  overflow-hidden md:m-auto ">
             <img
               src={findItem.image_url}
-              className="h-96  rounded-md  w-full"
+              className="xl:h-96  rounded-md  w-full  "
             />
-            <div className="text-slate-700 mt-10">
+            <div className="text-slate-700  md:block hidden mt-10 sm:mb-10">
               <h1 className="text-slate-600 font-semibold">Descrição:</h1>
               <p className="font-bold text-[12px] w-80">
                 {findItem.description}
               </p>
             </div>
           </div>
-          <div className=" space-y-4 ">
+          <div className=" space-y-4 md:w-96 mt-2 ">
             <h1 className="font-bold text-slate-600">{findItem.title}</h1>
             <p className="text-xs font-semibold text-slate-400">
               Codigo: {findItem._id}
@@ -61,54 +138,73 @@ export function InfoProduct() {
                 </span>{" "}
                 <span className="text-[14px]"> 8x no cartão sem juros</span>
               </h3>
-              <div className="mt-10 flex ">
-                <h1 className="text-xs border-[1px] py-1 px-2 text-center bg-slate-50 hover:bg-white cursor-pointer rounded">
-                  + Formas de pagamento
-                </h1>
+              <div className="mb-10 mt-5">
+                <h3 className="font-bold">Quantidade:</h3>
+                <div className="flex gap-2">
+                  <div
+                    onClick={less}
+                    className="border w-4 text-center rounded cursor-pointer"
+                  >
+                    -
+                  </div>
+                  <span> {count}</span>{" "}
+                  <div
+                    onClick={more}
+                    className="border w-4 text-center rounded cursor-pointer"
+                  >
+                    +
+                  </div>
+                </div>
               </div>
+
               <div className="mb-10 mt-5">
                 <h3 className="font-bold">Cor:</h3>
                 <div className="flex gap-3">
-                  <div className="h-6 w-6 bg-red-600 rounded border-2 cursor-pointer"></div>
-                  <div className="h-6 w-6 bg-green-200 rounded border-2 cursor-pointer"></div>
-                  <div className="h-6 w-6 bg-yellow-500 rounded border-2 cursor-pointer"></div>
+                  <NewToogle
+                    toogleStyle="hidden"
+                    toogleValue={inputColor}
+                    toogleMethod={setInputColor}
+                    toogleItems={colors}
+                    toogleColor={colors}
+                  />
                 </div>
               </div>
               <div className="mb-10 mt-5">
                 <h3 className="font-bold">Tamanho:</h3>
                 <div className="flex gap-3 text-center">
-                  <div className="px-2  rounded border-[1px]  cursor-pointer">
-                    M
-                  </div>
-                  <div className="px-2  rounded border-[1px]  cursor-pointer">
-                    GG
-                  </div>
-                  <div className="px-2  rounded border-[1px] cursor-pointer">
-                    XL
-                  </div>
+                  <NewToogle
+                    toogleValue={inputSize}
+                    toogleMethod={setInputSize}
+                    toogleItems={sizeProdu}
+                  />
                 </div>
               </div>
-              <div>
-                <Button
-                  className="bg-green-500 hover:bg-green-900 rounded text-slate-100 float-right"
-                  onClick={() => {
-                    addToCart(findItem);
-                  }}
-                >
-                  Adicionar ao carrinho{" "}
-                </Button>
+
+              <div className="xl:flex xl:flex-row  gap-5   w-full justify-center items-center flex-col flex">
+                <div onClick={incrementCart}>
+                  <Button
+                    className="bg-green-500 hover:bg-green-900 rounded xl:mb-0 mb-5 text-slate-100 "
+                    onClick={() => {
+                      addToCart(newResults);
+                    }}
+                  >
+                    Adicionar ao carrinho{" "}
+                  </Button>
+                </div>
+                <Link to={"/"} className="">
+                  <Button className=" ">Continuar comprando</Button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <div>
         <h1 className=" p-2 mt-10 text-2xl font-semibold text-slate-700">
           Comentarios
         </h1>
 
-        <div className="container mt-10 p-4   xl:w-[900px] border-[1px] max-h-96 rounded overflow-y-auto  mb-24">
+        <div className="container mt-10 p-4   xl:w-[900px]  border-[1px] max-h-96 rounded overflow-y-auto  mb-24">
           {!findComment.length && (
             <div className="text-center cursor-pointer text-gray-700 font-bold hover:text-gray-500">
               Seja o primeiro a comentar

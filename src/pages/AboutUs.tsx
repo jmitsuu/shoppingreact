@@ -1,3 +1,3 @@
 export function AboutUs() {
-  return <div className="h-96 w-96 "></div>;
+  return <div className="h-96   text-center w-full">Lorem ipsum</div>;
 }
