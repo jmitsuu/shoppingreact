@@ -18,14 +18,6 @@ import { Link } from "react-router-dom";
 export function CheckItems() {
   const { cart } = useCart();
 
-  if (cart.length === 0) {
-    return (
-      <div className="text-center text-slate-700 font-bold text-4xl">
-        Sem items no carrinho :(
-      </div>
-    );
-  }
-
   const totalCart = cart.map((el: { price: number; amout: number }) => {
     const total = {
       prices: el.price * el.amout,
