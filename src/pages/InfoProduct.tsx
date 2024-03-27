@@ -22,7 +22,7 @@ export function InfoProduct() {
   const { id: title } = useParams();
 
   if (isLoading || loadComments) return;
-  const findItem = products.find((el: any) => {
+  const findItem = products.find((el:any) => {
     if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
       return el;
     }

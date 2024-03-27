@@ -24,12 +24,12 @@ export function TopRated({ items }: any) {
   return (
     <div className="w-screen mb-32  bg-white relative mt-10 ">
       <div className="w-full container mb-32    flex justify-center items-center">
-        <div className="text-center flex flex-col  min-h-96  justify-center items-center ">
+        <div className="text-center  min-h-96  justify-center items-center ">
           <p className="text-gray-400 text-4xl">Nosso produtos</p>
           <h1 className="text-gray-500 uppercase font-bold xl:text-3xl mb-10">
             Destaques
           </h1>
-          <div className=" xl:grid md:grid-cols-5   p-5 ">
+          <div className=" xl:grid xl:grid-cols-5 md:grid-cols-3   p-5 ">
             {limitedArr.map((prod: arrItems) => {
               return (
                 <Products
