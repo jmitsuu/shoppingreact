@@ -1,7 +1,8 @@
 import axios from "axios";
-
+const url = import.meta.env.VITE_API;
+console.log(url)
 const instance = axios.create({
-  baseURL:"https://shoppingoriaj.com.jairo3478.c35.integrator.host"
+  baseURL:`${url}`
 })
 
 export default instance
