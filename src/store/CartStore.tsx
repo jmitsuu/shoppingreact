@@ -35,10 +35,19 @@ export function CartStore({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    const totalPrice = cart.reduce(
-      (acc: number, item) => acc + Number(item.price),
-      0
-    );
+    console.log(cart);
+    
+  const totalCart = cart.map((el: arrItems) => {
+    const total = {
+      prices: Number(el.price) * Number(el.amout),
+    };
+
+    return total.prices;
+  });
+  const totalPrice = totalCart.reduce(
+    (acc: number, curr: number) => acc + curr,
+    0
+  );
     setTotal(totalPrice);
   }, [cart]);
 
