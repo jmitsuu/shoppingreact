@@ -30,8 +30,8 @@ export function CheckItems() {
   );
 
   return (
-    <div className="xl:flex ">
-      <Table className="md:w-[800px] w-full overflow-y-auto mb-5">
+    <div className="xl:flex w-full  ">
+      <Table className="md:w-[800px] w-full overflow-y-auto mb-5 ">
         <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -75,7 +75,7 @@ export function CheckItems() {
           })}
         </TableBody>
       </Table>
-      <div className=" xl:w-96  border flex flex-col  items-center px-4 py-2 rounded-md">
+      <div className=" xl:w-96  border flex flex-col   px-4 py-2 rounded-md">
         <div className="flex gap-2 flex-col items-center border-b pb-4 w-full">
           <h1 className="text-slate-700 font-semibold text-xl mb-2">
             Calcular entrega

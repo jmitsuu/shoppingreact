@@ -2,7 +2,9 @@ import { ProgressPayment } from "@/components/ProgressPayment";
 import { useCart } from "@/store/CartStore";
 import { Outlet } from "react-router";
 
+
 export function Bag() {
+ 
   const { cart } = useCart();
 
   if (cart.length === 0) {
