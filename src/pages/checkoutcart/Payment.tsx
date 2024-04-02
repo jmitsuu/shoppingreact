@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 export function Payment() {
   const { cart } = useCart();
 
-
   const totalCart = cart.map((el: { price: number; amout: number }) => {
     const total = {
       prices: el.price * el.amout,
@@ -23,8 +22,8 @@ export function Payment() {
   return (
     <div className=" xl:w-full xl:min-h-[600px] rounded-xl    container bg-white ">
       <div className="xl:flex xl:justify-between items-center gap-6 justify-center w-full">
-        <div className=" py-2 px-4 rounded-md min-h-[500px] xl:w-72 flex flex-col   shadow-lg mb-10">
-          <div className="h-full max-h-[500px] border p-2 mb-10 w-full rounded-md overflow-y-auto">
+        <div className=" py-2 px-4 rounded-md xl:min-h-[500px] h-[300px] xl:w-72 flex flex-col   shadow-lg mb-10">
+          <div className="h-full max-h-[500px] border p-2 mb-10 w-[250px] rounded-md overflow-y-auto">
             {cart.map((item: arrItems) => {
               return (
                 <div

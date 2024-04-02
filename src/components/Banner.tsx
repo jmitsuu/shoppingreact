@@ -13,11 +13,11 @@ export function Banner() {
               <h2 className="xl:text-4xl sm:text-3xl uppercase font-bold text-orange-500">
                 Mude!
               </h2>
-              <p className="text-slate-700 xl:text-xl">
+              <p className="text-slate-700 xl:text-xl pb-5">
                 Encontre um estilo para todos os gostos e bolsos.
               </p>
               <Link to={"listacompleta"}>
-                <button className="bg-orange-500 px-1 rounded py-2 text-sm  text-gray-100 uppercase font-semibold">
+                <button className="bg-orange-500 px-2 rounded py-2 text-sm  text-gray-100 uppercase font-semibold">
                   Quero Conhecer
                 </button>
               </Link>

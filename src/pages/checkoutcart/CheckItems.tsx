@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -33,7 +32,7 @@ export function CheckItems() {
   return (
     <div className="xl:flex ">
       <Table className="md:w-[800px] w-full overflow-y-auto mb-5">
-        <TableCaption>Voce tem {cart.length} items no carrinho.</TableCaption>
+        <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Produto</TableHead>
