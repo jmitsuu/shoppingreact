@@ -15,6 +15,7 @@ export function AppRouter() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   return (
+  
     <>
       <Routes>
         <Route path="/" element={<HomeProducts />} />

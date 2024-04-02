@@ -2,7 +2,11 @@ import instance from "@/http/instance";
 import { useQuery } from "@tanstack/react-query";
 
 export function FetchProducts() {
-  const { data: products, isLoading } = useQuery({
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const response = await instance.get(`/products`);
@@ -10,5 +14,5 @@ export function FetchProducts() {
     },
   });
 
-  return { products, isLoading };
+  return { products, isLoading, isError };
 }
