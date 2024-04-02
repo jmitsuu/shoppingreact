@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 export function Bag() {
   const path = useLocation();
   const { cart } = useCart();
-  const [progress, setProgress] = useState(50);
+  const [progress, setProgress] = useState(10);
   useEffect(() => {
     if (path.pathname === "/check/payment") {
       setProgress(100);
     } else {
-      setProgress(50);
+      setProgress(10);
     }
   }, [path]);
   if (cart.length === 0) {
