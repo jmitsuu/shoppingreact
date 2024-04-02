@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function Banner() {
   return (
-    <div className=" flex   relative  xl:h-[700px] h-[500px] justify-center">
+    <div className=" flex   relative  xl:h-[700px] h-[500px] justify-center ">
       <div className=" xl:w-screen absolute   bg-center  flex items-center justify-center   bg-[#73D8DA]     h-full ">
         <div className=" container flex justify-between ">
           <div className=" flex  ">

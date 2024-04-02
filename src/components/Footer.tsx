@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export const Footer = () => {
   return (
     <footer
-      className="w-screen mt-10   md:h-80 border-t-[0.1rem] bg-gradient-to-tr from-[#303164]
+      className="w-screen mt-10  overflow-hidden md:h-80 border-t-[0.1rem] bg-gradient-to-tr from-[#303164]
     via-[#483584]
     to-[#303164]
     "

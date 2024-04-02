@@ -15,13 +15,15 @@ function App() {
   return (
     <>
       <CartStore>
-        <Header />
-        <div className="min-h-screen">
-          <AppRouter />
-          <Toaster />
+        <div className="min-h-screen overflow-x-hidden ">
+          <Header />
+          <div className="min-h-screen overflow-x-hidden ">
+            <AppRouter />
+            <Toaster />
+          </div>
+          <Footer />
         </div>
       </CartStore>
-      <Footer />
     </>
   );
 }

@@ -10,7 +10,7 @@ export function HomeProducts() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center ">
         <Spinner />
       </div>
     );
@@ -18,7 +18,7 @@ export function HomeProducts() {
 
   return (
     <>
-      <section className="min-h-screen flex-col mb-32">
+      <section className="min-h-screen flex-col mb-32 ">
         <div className="overflow-hidden">
           <Banner />
           <TopRated items={products} />
