@@ -47,7 +47,7 @@ export function ModalAside(props: any) {
           </span>
           <h1 className="text-center text-3xl mt-5 mb-5">Carrinho</h1>
           <div className="h-full relative flex flex-col">
-            <div className="h-[700px] md:h-[300px] w-full  overflow-y-auto py-4 px-2 border rounded-md">
+            <div className=" h-[300px] xl:h-[300px]   w-full  overflow-y-auto py-4 px-2 border rounded-md">
               <ul className="flex flex-col">
                 {cart.map((el: arrItems, index: number) => {
                   return (

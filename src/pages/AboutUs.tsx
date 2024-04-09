@@ -1,9 +1,10 @@
 
 export function AboutUs() {
 
+
   return (
-    <div className="h-96   text-center w-full">
-   lorem ipsum
+    <div className="h-96  container text-center w-full">
+     Lorem ipsum
     </div>
   );
 }
