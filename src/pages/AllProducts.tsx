@@ -21,16 +21,16 @@ export function AllProducts() {
   const [method, setMethod] = useState("");
 
   const lessOrMore = (param: any) => {
-    if (!method || method === "Aleatorio" ) return setResults(param.data);
+    if (!method || method === "Aleatorio" ) return setResults(param);
     if (method === "Menor preço") {
       return setResults(
-        param.data.sort(
+        param.sort(
           (a: { price: number }, b: { price: number }) => a.price - b.price
         )
       );
     } else {
       return setResults(
-        param.data.sort(
+        param.sort(
           (a: { price: number }, b: { price: number }) => b.price - a.price
         )
       );
@@ -40,7 +40,7 @@ export function AllProducts() {
     return await instance
       .get("/products")
       .then((res) => {
-        lessOrMore(res);
+        lessOrMore(res.data);
       })
       .catch((err) => console.log("ops!", err));
   };
