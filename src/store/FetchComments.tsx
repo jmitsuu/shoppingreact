@@ -4,8 +4,8 @@ export function FetchComments() {
   const { data: comments, isLoading: loadComments } = useQuery({
     queryKey: ["comments"],
     queryFn: async () => {
-      const response = await instance.get("/comments");
-      return response.data;
+      const {data} = await instance.get("/comments");
+      return data;
     },
   });
 

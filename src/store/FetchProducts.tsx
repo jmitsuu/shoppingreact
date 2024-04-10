@@ -9,8 +9,8 @@ export function FetchProducts() {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const response = await instance.get(`/products`);
-      return response.data;
+      const {data} = await instance.get(`/products`);
+      return data;
     },
   });
 

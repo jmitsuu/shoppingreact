@@ -10,11 +10,13 @@ import { useCount } from "@/hooks/useCount";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
 import { Spinner } from "@/components/Spinner";
+import { useProducCharact } from "@/hooks/useProducCharact";
 
 export function InfoProduct() {
   const { addToCart } = useCart();
   const { products, isLoading } = FetchProducts();
   const { comments, loadComments } = FetchComments();
+  const { colors, sizeProdu } = useProducCharact();
   const [inputColor, setInputColor] = useState("preto");
   const [inputSize, setInputSize] = useState("");
   const { more, less, count } = useCount();
@@ -22,7 +24,7 @@ export function InfoProduct() {
   const { id: title } = useParams();
 
   if (isLoading || loadComments) return;
-  const findItem = products.find((el:any) => {
+  const findItem = products.find((el: any) => {
     if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
       return el;
     }
@@ -30,38 +32,6 @@ export function InfoProduct() {
   const findComment = comments.filter(
     (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === title
   );
-
-  const sizeProdu = [
-    {
-      item: "P",
-    },
-    {
-      item: "M",
-    },
-    {
-      item: "G",
-    },
-    {
-      item: "GG",
-    },
-  ];
-  const colors = [
-    {
-      item: "preto ",
-      color: "bg-black",
-      title: "preto",
-    },
-    {
-      item: "vermelho ",
-      color: "bg-red-500",
-      title: "vermelho",
-    },
-    {
-      item: "azul",
-      color: "bg-blue-500",
-      title: "azul",
-    },
-  ];
 
   function incrementCart() {
     if (!inputSize) {
