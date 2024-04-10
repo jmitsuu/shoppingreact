@@ -6,19 +6,8 @@ import { Label } from "@radix-ui/react-dropdown-menu";
 import { Link } from "react-router-dom";
 
 export function Payment() {
-  const { cart } = useCart();
+  const { cart, total } = useCart();
 
-  const totalCart = cart.map((el: { price: number; amout: number }) => {
-    const total = {
-      prices: el.price * el.amout,
-    };
-
-    return total.prices;
-  });
-  const totalPrice = totalCart.reduce(
-    (acc: number, curr: number) => acc + curr,
-    0
-  );
   return (
     <div className=" xl:w-full xl:min-h-[600px] rounded-xl    container bg-white ">
       <div className="xl:flex xl:justify-between items-center gap-6 justify-center w-full">
@@ -61,7 +50,7 @@ export function Payment() {
           </div>
           <h1 className="text-slate-600 text-center flex items-center m-auto">
             Total a pagar:{" "}
-            <span className="font-bold text-xl">{totalPrice} R$</span>
+            <span className="font-bold text-xl">{total} R$</span>
           </h1>
         </div>
         <div className=" flex  xl:gap-10 md:justify-between border p-4 rounded-md shadow-lg">

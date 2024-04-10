@@ -15,19 +15,7 @@ import { useCart } from "@/store/CartStore";
 import { Link } from "react-router-dom";
 
 export function CheckItems() {
-  const { cart } = useCart();
-
-  const totalCart = cart.map((el: { price: number; amout: number }) => {
-    const total = {
-      prices: el.price * el.amout,
-    };
-
-    return total.prices;
-  });
-  const totalPrice = totalCart.reduce(
-    (acc: number, curr: number) => acc + curr,
-    0
-  );
+  const { cart, total } = useCart();
 
   return (
     <div className="xl:flex w-full  ">
@@ -103,7 +91,7 @@ export function CheckItems() {
             <ul className="w-full   ">
               <li className="text-[0.8rem] font-bold text-slate-700 flex gap-10 justify-between">
                 <h3> Total a pagar:</h3>
-                <h4> {totalPrice} R$</h4>
+                <h4> {total} R$</h4>
               </li>
               <li className="text-[0.8rem] font-bold text-slate-700 flex gap-10 w-full justify-between">
                 <h3> Frete:</h3>

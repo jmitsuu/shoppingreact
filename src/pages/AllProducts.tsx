@@ -19,39 +19,31 @@ const Selectitems = [
 export function AllProducts() {
   const [results, setResults] = useState([]);
   const [method, setMethod] = useState("");
+
+  const lessOrMore = (param: any) => {
+    if (!method || method === "Aleatorio" ) return setResults(param.data);
+    if (method === "Menor preço") {
+      return setResults(
+        param.data.sort(
+          (a: { price: number }, b: { price: number }) => a.price - b.price
+        )
+      );
+    } else {
+      return setResults(
+        param.data.sort(
+          (a: { price: number }, b: { price: number }) => b.price - a.price
+        )
+      );
+    }
+  };
   const getProducts = async () => {
     return await instance
       .get("/products")
       .then((res) => {
-        let limitedData = res.data;
-        if (!method) {
-          setResults(limitedData);
-        }
-        if (method == "Aleatorio") {
-          setResults(limitedData);
-        }
-        if (method == "Menor preço") {
-          setResults([]);
-          const newRes = res.data.sort(
-            (a: { price: number }, b: { price: number }) => a.price - b.price
-          );
-          setResults(newRes);
-        }
-        if (method == "Maior preço") {
-          setResults([]);
-          const newRes = res.data.sort(
-            (a: { price: number }, b: { price: number }) => b.price - a.price
-          );
-          setResults(newRes);
-        }
+        lessOrMore(res);
       })
-
       .catch((err) => console.log("ops!", err));
   };
-  function startFromTop() {
-    window.scrollTo(0, 0);
-  }
-  startFromTop();
 
   useEffect(() => {
     if (method) {
