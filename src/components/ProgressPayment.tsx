@@ -9,10 +9,9 @@ export function ProgressPayment() {
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
-    //em uma situação real, poderia ser usado a resposta da api, para cada estagio de validação no carrinho até a conclusão do pagamemto.
+    //em uma situação real, poderia ser usado a resposta da api, para cada estagio de validação do carrinho até a conclusão do pagamemto.
     if (path.pathname === "/check/payment") {
       setProgress(100);
-      console.log(path);
     } else {
       setProgress(0);
     }

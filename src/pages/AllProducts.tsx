@@ -16,34 +16,39 @@ const Selectitems = [
     item: "Aleatorio",
   },
 ];
+const compItems = {
+  more: "Maior preço",
+  less: "Menor preço",
+  random: "Aleatorio",
+};
 export function AllProducts() {
   const [results, setResults] = useState([]);
   const [method, setMethod] = useState("");
 
   const lessOrMore = (param: any) => {
-    if (!method || method === "Aleatorio" ) return setResults(param);
-    if (method === "Menor preço") {
-      return setResults(
+    if (!method || method === compItems.random) return setResults(param);
+    if (method === compItems.less) {
+       setResults(
         param.sort(
           (a: { price: number }, b: { price: number }) => a.price - b.price
         )
       );
     } else {
-      return setResults(
+       setResults(
         param.sort(
           (a: { price: number }, b: { price: number }) => b.price - a.price
         )
       );
     }
-   
   };
   const getProducts = async () => {
-    return await instance
-      .get("/products")
-      .then((res) => {
-        lessOrMore(res.data);
-      })
-      .catch((err) => console.log("ops!", err));
+    try {
+      const {data} = await instance.get("/products");
+      lessOrMore(data);
+    } catch (error) {
+      console.log("ops!", error)
+    }
+
   };
 
   useEffect(() => {
