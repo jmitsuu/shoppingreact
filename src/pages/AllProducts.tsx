@@ -35,6 +35,7 @@ export function AllProducts() {
         )
       );
     }
+   
   };
   const getProducts = async () => {
     return await instance
