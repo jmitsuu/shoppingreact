@@ -5,6 +5,9 @@ import instance from "@/http/instance";
 import { arrItems } from "@/interfaces/ProductInterface";
 import { useEffect, useState } from "react";
 
+interface arrSelect {
+  item: string;
+}
 const Selectitems = [
   {
     item: "Maior preço",
@@ -16,25 +19,25 @@ const Selectitems = [
     item: "Aleatorio",
   },
 ];
-const compItems = {
-  more: "Maior preço",
-  less: "Menor preço",
-  random: "Aleatorio",
+const comNewItems = (param: Array<arrSelect>) => {
+  return param.map((el: arrSelect) => el.item);
 };
+
 export function AllProducts() {
   const [results, setResults] = useState([]);
   const [method, setMethod] = useState("");
 
   const lessOrMore = (param: any) => {
-    if (!method || method === compItems.random) return setResults(param);
-    if (method === compItems.less) {
-       setResults(
+    if (!method || method === comNewItems(Selectitems)[2])
+      return setResults(param);
+    if (method === comNewItems(Selectitems)[1]) {
+      return setResults(
         param.sort(
           (a: { price: number }, b: { price: number }) => a.price - b.price
         )
       );
     } else {
-       setResults(
+      setResults(
         param.sort(
           (a: { price: number }, b: { price: number }) => b.price - a.price
         )
@@ -43,12 +46,11 @@ export function AllProducts() {
   };
   const getProducts = async () => {
     try {
-      const {data} = await instance.get("/products");
+      const { data } = await instance.get("/products");
       lessOrMore(data);
     } catch (error) {
-      console.log("ops!", error)
+      console.log("ops!", error);
     }
-
   };
 
   useEffect(() => {
