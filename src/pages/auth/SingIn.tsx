@@ -9,8 +9,8 @@ export function SingIn(){
     <div className="w-full h-full flex mt-10 flex-col justify-center items-center">
       <h1 className="text-gray-500 text-5xl  border-b-2 pb-3">Bem vindo!</h1>
      <div className="xl:flex shadow-2xl rounded-md shadow-muted-foreground  mt-10 min-h-[400px] min-w-96   justify-center">
-      <div >
-     <div className="flex w-full justify-between px-5 py-2">
+      <div className="px-8 xl:min-w-[410px]" >
+     <div className="flex w-full justify-between px-5 py-4">
      <h1 className="text-xl text-gray-600 border-b ">Logar</h1>
      <div className="flex  items-center">
      <a href="https://www.linkedin.com/in/jairo-miguel-703121146/" target="_blank">
@@ -31,7 +31,7 @@ export function SingIn(){
 
     </form>
       </div>
-    <div className="xl:w-96 xl:min-h-full xl:rounded-r-md flex flex-col items-center justify-center bg-gradient-to-tr from-[#303164]
+    <div className="xl:min-w-[430px]  xl:min-h-full xl:rounded-r-md flex flex-col items-center justify-center bg-gradient-to-tr from-[#303164]
     via-[#483584]
     to-[#303164]">
       <h1 className="text-gray-300 font-bold text-3xl">Bem vindo a Oriaj</h1>
