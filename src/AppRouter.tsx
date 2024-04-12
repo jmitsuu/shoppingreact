@@ -7,6 +7,8 @@ import { useLayoutEffect  } from "react";
 import { CheckItems } from "./pages/checkoutcart/CheckItems";
 import { Payment } from "./pages/checkoutcart/Payment";
 import { Bag } from "./pages/Bag";
+import { SingIn } from "./pages/auth/SingIn";
+import { SingUp } from "./pages/auth/SingUp";
 
 export function AppRouter() {
   const location = useLocation();
@@ -19,6 +21,8 @@ export function AppRouter() {
     <>
       <Routes>
         <Route path="/" element={<HomeProducts />} />
+        <Route path="/auth/singin" element={<SingIn />} />
+        <Route path="/auth/singup" element={<SingUp />} />
         <Route path="/listacompleta" element={<AllProducts />} />
         <Route path="/listacompleta/:id" element={<InfoProduct />} />
         <Route path="/sobre" element={<AboutUs />} />

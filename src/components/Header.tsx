@@ -16,7 +16,7 @@ export const Header = () => {
             </li>
           </ul>
           <div className="flex items-center gap-10">
-            <h1 className=" hover:border-b-[0.1em] cursor-pointer">Conta</h1>
+            <Link to={"/auth/singin"} className=" hover:border-b-[0.1em] cursor-pointer">Conta</Link>
             <ModalAside icon={<RiShoppingCart2Fill />} />
           </div>
         </div>
