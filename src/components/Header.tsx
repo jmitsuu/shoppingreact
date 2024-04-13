@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { ModalAside } from "./ModalAside";
 import { RiShoppingCart2Fill } from "react-icons/ri";
+import { IoPersonSharp } from "react-icons/io5";
+import { useAuth } from "@/store/Auth";
 
 export const Header = () => {
+  const { user , signout} = useAuth();
   return (
     <header className=" h-16 bg-white w-screen  flex justify-center  items-center  z-50 ">
       <nav className="flex  text-gray-600 text-md font-bold items-center justify-center   ">
@@ -15,8 +18,14 @@ export const Header = () => {
               <Link to={"/sobre"}> Sobre</Link>
             </li>
           </ul>
+          
           <div className="flex items-center gap-10">
-            <Link to={"/auth/singin"} className=" hover:border-b-[0.1em] cursor-pointer">Conta</Link>
+            <div className={`border p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-all ${!user && 'hidden'}`} onClick={signout}>
+            {user && <IoPersonSharp />}
+            </div>
+            <Link to={"/auth/singin"} className={`hover:border-b-[0.1em] cursor-pointe ${user && 'hidden'}`} >Conta
+         
+            </Link>
             <ModalAside icon={<RiShoppingCart2Fill />} />
           </div>
         </div>

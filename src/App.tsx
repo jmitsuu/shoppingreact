@@ -6,26 +6,29 @@ import { Header } from "./components/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { Error404 } from "./pages/Error404";
 import { FetchProducts } from "./store/FetchProducts";
+import { AuthProvider } from "./store/Auth";
 
 function App() {
-  const { isError } = FetchProducts();
-  if (isError) {
-    return <Error404 />;
-  }
-  return (
-    <>
-      <CartStore>
-        <div className="min-h-screen overflow-x-hidden ">
-          <Header />
-          <div className="min-h-screen overflow-x-hidden ">
-            <AppRouter />
-            <Toaster />
-          </div>
-          <Footer />
-        </div>
-      </CartStore>
-    </>
-  );
+ const { isError } = FetchProducts();
+ if (isError) {
+  return <Error404 />;
+ }
+ return (
+  <>
+   <AuthProvider>
+    <CartStore>
+     <div className="min-h-screen overflow-x-hidden ">
+      <Header />
+      <div className="min-h-screen overflow-x-hidden ">
+       <AppRouter />
+       <Toaster />
+      </div>
+      <Footer />
+     </div>
+    </CartStore>
+   </AuthProvider>
+  </>
+ );
 }
 
 export default App;

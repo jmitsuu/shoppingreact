@@ -1,22 +1,27 @@
-
-
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 interface formType {
-  formLabel?:string | "prop formLabel",
-  formValue?:string | "prop formValue", 
-  formPlace?:string | "prop formPlace",
-  formType?:string | "text"
-
+ formlabel?: string | "prop formlabel";
+ formvalue?: string | "prop formvalue";
+ formplace?: string | "prop formplace";
+ formtype?: string | "text";
+ formname?: any;
+ formerror?: any;
 }
 
-export function ProfileForm(props:formType ) {
-return (
+export function ProfileForm(props: formType) {
+ return (
   <div className="mb-4 px-2">
-    <Label className= "font-semibold text-md">{props.formLabel}</Label>
-    <Input className="h-12 mt-2" type={props.formType} placeholder={props.formPlace} value={props.formValue} />
+   <Label className="font-semibold text-md">{props.formlabel}</Label>
+   <Input
+    {...props.formname}
+    className={`h-12 mt-2 ${props.formerror ? "border-red-500" : ""}`}
+    type={props.formtype}
+    placeholder={props.formplace}
+    value={props.formvalue}
+   />
+   <p className="text-red-500 text-xs">{props.formerror}</p>
   </div>
-
-)
+ );
 }
