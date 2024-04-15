@@ -35,8 +35,6 @@ export function CartStore({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    console.log(cart);
-    
   const totalCart = cart.map((el: arrItems) => {
     const total = {
       prices: Number(el.price) * Number(el.amout),

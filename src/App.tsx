@@ -15,18 +15,20 @@ function App() {
  }
  return (
   <>
-   <AuthProvider>
+
     <CartStore>
      <div className="min-h-screen overflow-x-hidden ">
       <Header />
       <div className="min-h-screen overflow-x-hidden ">
+      <AuthProvider>
        <AppRouter />
+       </AuthProvider>
        <Toaster />
       </div>
       <Footer />
      </div>
     </CartStore>
-   </AuthProvider>
+ 
   </>
  );
 }

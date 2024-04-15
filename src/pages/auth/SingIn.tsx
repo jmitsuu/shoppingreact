@@ -11,14 +11,17 @@ interface typeInput {
 }
 
 export function SingIn() {
-  const {singin} = useAuth()
+  const { mutation} = useAuth()
  const {
   register,
   handleSubmit,
   formState: { errors },
  } = useForm();
  function pushUser({ inputEmail, inputPassword }: typeInput) {
-  singin(inputEmail, inputPassword)
+  mutation.mutate({
+     email:inputEmail,
+     password:inputPassword 
+  })
  }
 
  return (

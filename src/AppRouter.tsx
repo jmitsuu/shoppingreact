@@ -10,7 +10,8 @@ import { Bag } from "./pages/Bag";
 import { SingIn } from "./pages/auth/SingIn";
 import { SingUp } from "./pages/auth/SingUp";
 import { Management } from "./pages/admin/Management";
-import { useAuth } from "./store/Auth";
+import { FetchUserAdm } from "./store/FetchUserAdm";
+import { Spinner } from "./components/Spinner";
 
 
 export function AppRouter() {
@@ -21,9 +22,14 @@ export function AppRouter() {
   window.scrollTo(0, 0);
  }, [location.pathname]);
  const Private = ({Item}:any) =>{
-  const {signed} = useAuth()
+  // const {signed} = useAuth();
+  const {admin , isLoading, isError} = FetchUserAdm();
 
-  return signed  ? <Item /> : <SingIn/>; 
+  if(isLoading) return <div className="h-full w-full flex justify-center"><Spinner/></div>
+  if(admin[0].acess_level < 3) return <div className="text-center text-gray-400 text-4xl">Voce não possui permissão</div>
+  if(admin[0].acess_level === 3) return <Item /> 
+  if(isError) return  <div className="text-center text-gray-400 text-4xl">Efetue o login novamente</div>
+  // return signed  ? <Item /> : <SingIn/>; 
  }
  return (
   <>
@@ -32,7 +38,6 @@ export function AppRouter() {
     <Route path="/auth/singin" element={<SingIn />} />
     <Route path="/auth/singup" element={<SingUp />} />
     <Route path="/admin"  element={< Private Item={Management} />} />
-
     <Route path="/listacompleta" element={<AllProducts />} />
     <Route path="/listacompleta/:id" element={<InfoProduct />} />
     <Route path="/sobre" element={<AboutUs />} />
