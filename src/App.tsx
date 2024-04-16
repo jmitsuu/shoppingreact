@@ -4,9 +4,8 @@ import { AppRouter } from "./AppRouter";
 import { CartStore } from "./store/CartStore";
 import { Header } from "./components/Header";
 import { Toaster } from "@/components/ui/toaster";
-import { Error404 } from "./pages/Error404";
-import { FetchProducts } from "./store/FetchProducts";
-import { AuthProvider } from "./store/Auth";
+import { Error404 } from "./pages/layouts/Error404";
+import { FetchProducts } from "./api/products/FetchProducts";
 
 function App() {
  const { isError } = FetchProducts();
@@ -15,20 +14,16 @@ function App() {
  }
  return (
   <>
-
-    <CartStore>
+   <CartStore>
+    <div className="min-h-screen overflow-x-hidden ">
+     <Header />
      <div className="min-h-screen overflow-x-hidden ">
-      <Header />
-      <div className="min-h-screen overflow-x-hidden ">
-      <AuthProvider>
-       <AppRouter />
-       </AuthProvider>
-       <Toaster />
-      </div>
-      <Footer />
+       <AppRouter />  
+      <Toaster />
      </div>
-    </CartStore>
- 
+     <Footer />
+    </div>
+   </CartStore>
   </>
  );
 }

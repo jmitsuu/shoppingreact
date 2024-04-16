@@ -3,25 +3,62 @@ import { Button } from "@/components/ui/button";
 import { PiLinkedinLogo } from "react-icons/pi";
 import { LiaInstagram } from "react-icons/lia";
 import { useForm } from "react-hook-form";
-import { useAuth } from "@/store/Auth";
+import { toast } from "@/components/ui/use-toast";
+import { Spinner } from "@/components/Spinner";
+import { useNavigate } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+import instance from "@/http/instance";
+
 
 interface typeInput {
  inputEmail?: string | "";
  inputPassword?: string | "";
+ email?:string,
+ password?:string,
 }
 
 export function SingIn() {
-  const { mutation} = useAuth()
+
+  const navigate = useNavigate()
+  const mutation = useMutation({
+   mutationFn: (newTodo:typeInput) => {
+     return instance.post('/login', newTodo)
+   },
+   onSuccess: ({data})=>{
+     localStorage.setItem("credentials",JSON.stringify({
+       userName: data.userName,
+       tokenLocal:data.token,
+       id: data.id_user,
+     }))
+       toast({
+       variant: "sucess",
+       title: "Logado com sucesso!",
+     
+     });
+     navigate("/")
+   },
+  onError(error) {
+   const {response}:any = error
+   toast({
+      variant: "destructive",
+      title: "Aviso!",
+      description: response?.data.message,
+    });
+  },
+  
+ })
  const {
   register,
   handleSubmit,
   formState: { errors },
  } = useForm();
  function pushUser({ inputEmail, inputPassword }: typeInput) {
-  mutation.mutate({
-     email:inputEmail,
-     password:inputPassword 
-  })
+   mutation.mutate({
+      email:inputEmail,
+      password:inputPassword
+   })
+
+
  }
 
  return (
@@ -66,9 +103,11 @@ export function SingIn() {
 
       <Button
        type="submit"
+       disabled={mutation.isPending}
        className="w-full mt-5 h-12 bg-[#483584] hover:bg-[#5842a1]"
-      >
-       Entrar
+      >{mutation.isPending ? <Spinner/> : "entrar"
+      }
+    
       </Button>
       <div className="text-xs text-center w-full mt-10">
        <span className="hover:text-gray-800 text-gray-600 cursor-pointer">
