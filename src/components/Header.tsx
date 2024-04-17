@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { ModalAside } from "./ModalAside";
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
+import { FetchUserAdm } from "@/api/userAuth/FetchUserAdm";
 
 export const Header = () => {
- return (
+  const {admin} = FetchUserAdm();
+ 
+console.log(admin)
+  return (
   <header className=" h-16 bg-white w-screen  flex justify-center  items-center  z-50 ">
    <nav className="flex  text-gray-600 text-md font-bold items-center justify-center   ">
     <div className="flex w-screen px-10 h-16 z-50 fixed justify-between items-center bg-white  ">

@@ -2,9 +2,9 @@ import { useLocal } from "@/hooks/useLocal";
 import instance from "@/http/instance";
 import { useQuery } from "@tanstack/react-query";
 
-
+const cred: any | null = localStorage.getItem("credentials");
+const user = JSON.parse(cred)
 export function FetchUserAdm() {
-const {user}:any = useLocal()
 
   const {
     data: admin,
@@ -15,7 +15,7 @@ const {user}:any = useLocal()
     queryFn: async () => {
       const {data} = await instance.get(`/admin`,{
         headers:{
-          "authorization": `${user.tokenLocal}` || null
+          "authorization": `${user.tokenLocal}`
         }
       });
       return data;

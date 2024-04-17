@@ -8,6 +8,7 @@ import { Spinner } from "@/components/Spinner";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import instance from "@/http/instance";
+import { FetchUserAdm } from "@/api/userAuth/FetchUserAdm";
 
 
 interface typeInput {
@@ -35,6 +36,8 @@ export function SingIn() {
        title: "Logado com sucesso!",
      
      });
+  
+  
      navigate("/")
    },
   onError(error) {

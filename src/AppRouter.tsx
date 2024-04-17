@@ -9,12 +9,23 @@ import { Payment } from "./pages/checkoutcart/Payment";
 import { Bag } from "./pages/Bag";
 import { SingIn } from "./pages/auth/SingIn";
 import { SingUp } from "./pages/auth/SingUp";
+import { Default } from "./pages/layouts/Default";
 import { Management } from "./pages/admin/Management";
-import { Spinner } from "./components/Spinner";
 
 export function AppRouter() {
  const location = useLocation();
-
+ //  const {isLoading, admin } = FetchUserAdm();
+ //  if(isLoading){
+ //   if(admin){
+ //     return(
+ //       <Routes>
+ //          <Route path="/admin" element={<Management />} />
+ //       </Routes>
+ //     )
+ //   }else{
+ //     return <HomeProducts />
+ //   }
+ // }
  useLayoutEffect(() => {
   window.scrollTo(0, 0);
  }, [location.pathname]);
@@ -22,17 +33,19 @@ export function AppRouter() {
  return (
   <>
    <Routes>
-    <Route path="/" element={<HomeProducts />} />
-    <Route path="/auth/singin" element={<SingIn />} />
-    <Route path="/auth/singup" element={<SingUp />} />
-    <Route path="/admin" element={<Management />} />
-    <Route path="/listacompleta" element={<AllProducts />} />
-    <Route path="/listacompleta/:id" element={<InfoProduct />} />
-    <Route path="/sobre" element={<AboutUs />} />
-    <Route path="/:id" element={<InfoProduct />} />
-    <Route path="/check" element={<Bag />}>
-     <Route path="cart" element={<CheckItems />} />
-     <Route path="payment" element={<Payment />} />
+    <Route path="/" element={<Default />}>
+     <Route path="/" element={<HomeProducts />} />
+     <Route path="/auth/singin" element={<SingIn />} />
+     <Route path="/auth/singup" element={<SingUp />} />
+     <Route path="/admin" element={<Management />} />
+     <Route path="/listacompleta" element={<AllProducts />} />
+     <Route path="/listacompleta/:id" element={<InfoProduct />} />
+     <Route path="/sobre" element={<AboutUs />} />
+     <Route path="/:id" element={<InfoProduct />} />
+     <Route path="/check" element={<Bag />}>
+      <Route path="cart" element={<CheckItems />} />
+      <Route path="payment" element={<Payment />} />
+     </Route>
     </Route>
    </Routes>
   </>

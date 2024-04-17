@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { arrItems } from "@/interfaces/ProductInterface";
 import { useCart } from "@/store/CartStore";
 import { FetchProducts } from "@/api/products/FetchProducts";
@@ -11,6 +11,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
 import { Spinner } from "@/components/Spinner";
 import { useProducCharact } from "@/hooks/useProducCharact";
+import { Error404 } from "./layouts/Error404";
 
 export function InfoProduct() {
  const { addToCart } = useCart();
@@ -22,6 +23,7 @@ export function InfoProduct() {
  const { more, less, count } = useCount();
  const { toast } = useToast();
  const { id: title } = useParams();
+const navigate = useNavigate()
 
  if (isLoading || loadComments) return;
  const findItem = products.find((el: any) => {
@@ -60,6 +62,11 @@ export function InfoProduct() {
     <Spinner />{" "}
    </div>
   );
+ }
+ if(!findItem){
+  return(
+     <Error404 />
+  )
  }
 
  return (
