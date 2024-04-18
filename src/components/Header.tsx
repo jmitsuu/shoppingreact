@@ -4,7 +4,6 @@ import { RiShoppingCart2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
 import { FetchUserAdm } from "@/api/userAuth/FetchUserAdm";
-import { useLocal } from "@/hooks/useLocal";
 import {
  Sheet,
  SheetContent,

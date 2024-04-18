@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { arrItems } from "@/interfaces/ProductInterface";
 import { useCart } from "@/store/CartStore";
 import { FetchProducts } from "@/api/products/FetchProducts";
@@ -23,7 +23,6 @@ export function InfoProduct() {
  const { more, less, count } = useCount();
  const { toast } = useToast();
  const { id: title } = useParams();
-const navigate = useNavigate()
 
  if (isLoading || loadComments) return;
  const findItem = products.find((el: any) => {
