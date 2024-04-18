@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
  Table,
  TableBody,
- TableCaption,
  TableCell,
  TableHead,
  TableHeader,
@@ -10,38 +9,18 @@ import {
 } from "@/components/ui/table";
 import { arrItems } from "@/interfaces/ProductInterface";
 import { FetchProducts } from "@/api/products/FetchProducts";
-import { useEffect, useState } from "react";
 
-//  {Number(item.price) * Number(item.amout)} R$
 export function Management() {
- const [results, setResults] = useState([]);
  const { products, isLoading } = FetchProducts();
- function getMore(a: number, b: number) {
-  a = 0;
-  b = 10;
-  return (a = b), (b = a * a);
- }
  const limitedProducts = products.slice(0, 10);
-
- // function userReachedBottom() {
- //   const scrollPosition = window.scrollY + window.innerHeight;
- //   const documentHeight = document.documentElement.offsetHeight;
- //   return scrollPosition >= documentHeight;
- // }
- // useEffect(()=>{
- //   setResults(products.slice(0,10))
- //   window.addEventListener('scroll', () => {
- //     if (userReachedBottom()) {
- //       console.log('Usuário chegou no fim da página');
- //       setResults(products.slice(0,10))
- //     }
- //   });
- // },[userReachedBottom])
  if (isLoading) {
   return <div>...</div>;
  }
  return (
-  <div className="w-screen h-full container flex justify-center items-center">
+  <div className="w-screen h-full container  justify-center items-center">
+   <h1 className="text-gray-500 text-2xl md:text-4xl mb-20 text-center">
+    Painel Administrador
+   </h1>
    <Table className="  h-[200px] overflow-y-auto mb-5 ">
     {/* <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption> */}
     <TableHeader>

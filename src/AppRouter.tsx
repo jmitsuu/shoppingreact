@@ -11,29 +11,27 @@ import { SingIn } from "./pages/auth/SingIn";
 import { SingUp } from "./pages/auth/SingUp";
 import { Default } from "./pages/layouts/Default";
 import { Management } from "./pages/admin/Management";
+import { FetchUserAdm } from "./api/userAuth/FetchUserAdm";
+import { Unauthorized } from "./pages/layouts/Unauthorized";
 
 export function AppRouter() {
  const location = useLocation();
- //  const {isLoading, admin } = FetchUserAdm();
- //  if(isLoading){
- //   if(admin){
- //     return(
- //       <Routes>
- //          <Route path="/admin" element={<Management />} />
- //       </Routes>
- //     )
- //   }else{
- //     return <HomeProducts />
- //   }
- // }
+
  useLayoutEffect(() => {
   window.scrollTo(0, 0);
  }, [location.pathname]);
+ const { admin } = FetchUserAdm();
 
  return (
   <>
    <Routes>
+  
     <Route path="/" element={<Default />}>
+    {admin ? (
+     <Route path="/admin" element={<Management />} />
+    ) : (
+     <Route path="/admin" element={<Unauthorized />} />
+    )}
      <Route path="/" element={<HomeProducts />} />
      <Route path="/auth/singin" element={<SingIn />} />
      <Route path="/auth/singup" element={<SingUp />} />
