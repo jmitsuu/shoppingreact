@@ -1,4 +1,3 @@
-
 import {
  Table,
  TableBody,
@@ -11,57 +10,82 @@ import { arrItems } from "@/interfaces/ProductInterface";
 import { FetchProducts } from "@/api/products/FetchProducts";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function Management() {
  const { products, isLoading } = FetchProducts();
- const [page, setPage ] = useState<any>([])
- const limitedProducts = products.slice(0, 10);
- console.log(products.length / 10)
- useEffect(()=>{
-  for(let i = 1; i < products.length / 10; i ++){
-    setPage((state:any) => [...state, i])
-   }
-},[])
+ const [results, setResults] = useState<any>([]);
+ const getMore = () => {
+  setResults(() => products.slice(0, products.length * 10));
+  console.log(results);
+ };
+
+ useEffect(() => {
+  if (products) {
+   setResults(products.slice(0, 10));
+  }
+ }, [products]);
  if (isLoading) {
   return <div>...</div>;
  }
 
  return (
-  <div className="w-screen h-full container  justify-center items-center">
+  <div className="w-screen  container   ">
    <h1 className="text-gray-500 text-2xl md:text-4xl mb-20 text-center">
     Painel Administrador
    </h1>
-   <Table className="  h-[200px] overflow-y-auto mb-5 ">
-    {/* <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption> */}
-    <TableHeader>
-     <TableRow>
-      <TableHead className="text-center">#</TableHead>
-      <TableHead className="">Imagem</TableHead>
-      <TableHead className="text-center">Titulo</TableHead>
-      <TableHead className="text-center">Preço</TableHead>
-      <TableHead className="text-center">#</TableHead>
-     </TableRow>
-    </TableHeader>
-    <TableBody>
-     {limitedProducts.map((item: arrItems) => {
-      return (
-       <TableRow key={item._id} className="">
+   <div className="flex items-center justify-start gap-10 mb-10">
+
+    <Input className="w-96" placeholder="pesquisar item.." />
+    <Button className="bg-blue-500 hover:bg-blue-600">Adicionar</Button>
+   </div>
+   <div className="flex gap-10">
+    <Table className="  h-[200px] xl:min-w-[800px] border-t overflow-y-auto mb-5 ">
+     {/* <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption> */}
+     <TableHeader>
+      <TableRow>
+       <TableHead className="text-center">#</TableHead>
+       <TableHead className="">Imagem</TableHead>
+       <TableHead className="text-center">Titulo</TableHead>
+       <TableHead className="text-center">Preço</TableHead>
+       <TableHead className="text-center">#</TableHead>
+      </TableRow>
+     </TableHeader>
+     <TableBody>
+      {results.map((item: arrItems) => {
+       return (
+        <TableRow key={item._id} className="">
          <TableCell className="font-bold text-center">{item._id}</TableCell>
-        <TableCell className="font-bold text-center">
-         <img src={item.image_url} className="h-10" />
-        </TableCell>
-        <TableCell className="font-bold text-center">{item.title}</TableCell>
-        <TableCell className="font-bold text-center">{item.price}</TableCell>
-        <TableCell className="font-bold text-center flex items-center justify-center gap-x-4 ">
-        <FaPencilAlt  className="text-blue-500 text-2xl"/>
-        <FaTrash  className="text-red-500 text-2xl"/>
-        </TableCell>
-       </TableRow>
-      );
-     })}
-    </TableBody>
-   </Table>
-   {page}
+         <TableCell className="font-bold text-center">
+          <img src={item.image_url} className="h-10" />
+         </TableCell>
+         <TableCell className="font-bold text-center">{item.title}</TableCell>
+         <TableCell className="font-bold text-center">{item.price}</TableCell>
+         <TableCell className="font-bold text-center flex items-center justify-center gap-x-4 ">
+          <FaPencilAlt className="text-blue-500 text-2xl" />
+          <FaTrash className="text-red-500 text-2xl" />
+         </TableCell>
+        </TableRow>
+       );
+      })}
+     </TableBody>
+    </Table>
+
+    <div className="w-72 h-96">
+      <div className="w-full h-44 p-5 border rounded-md flex flex-col text-center ">
+        <h1 className="text-gray-400 font-bold text-xl ">Total</h1>
+        <p className="text-gray-700 font-bold text-4xl mt-8">{results.length}</p>
+
+
+      </div>
+    </div>
+   </div>
+   <div className="w-full mt-10 flex justify-center">
+     <Button className="" onClick={getMore}>
+      Carregar mais...
+     </Button>
+    </div>
   </div>
  );
 }
