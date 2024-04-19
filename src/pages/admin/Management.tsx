@@ -12,6 +12,7 @@ import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Modal } from "@/components/Modal";
 
 export function Management() {
  const { products, isLoading } = FetchProducts();
@@ -24,6 +25,7 @@ export function Management() {
  useEffect(() => {
   if (products) {
    setResults(products.slice(0, 10));
+   console.log(products)
   }
  }, [products]);
  if (isLoading) {
@@ -38,7 +40,15 @@ export function Management() {
    <div className="flex items-center justify-start gap-10 mb-10">
 
     <Input className="w-96" placeholder="pesquisar item.." />
-    <Button className="bg-blue-500 hover:bg-blue-600">Adicionar</Button>
+   
+    <Modal
+     cn={"bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-sm hover:text-white transition"}
+     titleTrigger="Adicionar"
+     titleModal="Adicionar novo produto"
+     
+    />
+  
+  
    </div>
    <div className="flex gap-10">
     <Table className="  h-[200px] xl:min-w-[800px] border-t overflow-y-auto mb-5 ">

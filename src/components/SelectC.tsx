@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select";
 interface arrSelect {
   title: string;
-  arrItems: any;
+  arrPropSelect: any;
   selectMethod: string;
   controlMethod: any;
 }
@@ -18,10 +18,12 @@ export function SelectC(props: arrSelect) {
         <SelectValue placeholder={props.title} />
       </SelectTrigger>
       <SelectContent className="bg-white">
-        {props.arrItems.map((el: { item: string }) => {
+        {props.arrPropSelect.map((el: {
+          title: string; item: string 
+}) => {
           return (
             <SelectItem key={el.item} value={el.item}>
-              {el.item}
+              {el.title}
             </SelectItem>
           );
         })}

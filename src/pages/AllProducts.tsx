@@ -11,12 +11,16 @@ interface arrSelect {
 const Selectitems = [
   {
     item: "Maior preço",
+    title:"Maior preço"
   },
   {
     item: "Menor preço",
+    title: "Menor preço"
   },
   {
     item: "Aleatorio",
+    title: "Aleatorio"
+    
   },
 ];
 const comNewItems = (param: Array<arrSelect>) => {
@@ -77,7 +81,7 @@ export function AllProducts() {
           <div>
             <SelectC
               title="Ordenar"
-              arrItems={Selectitems}
+              arrPropSelect={Selectitems}
               selectMethod={method}
               controlMethod={setMethod}
             />
