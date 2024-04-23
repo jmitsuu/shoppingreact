@@ -12,11 +12,12 @@ import { useState } from "react";
 import { ProfileForm } from "./ProfileForm";
 import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
-import { Mutation, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import instance from "@/http/instance";
 import { toast } from "./ui/use-toast";
 import { useLocal } from "@/hooks/useLocal";
+import { Cross2Icon } from "@radix-ui/react-icons";
 const Selectitems = [
   {
     item:"male",
@@ -55,6 +56,7 @@ export function Modal(props:any){
   const [smethod, setsMethod] = useState("");
   const [modal, setModal] = useState(false)
   const {user}:any =useLocal()
+  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: (newTodo: typeInput) => {
      return instance.post("/products",    newTodo,{
@@ -63,12 +65,13 @@ export function Modal(props:any){
       }
      });
     },
-    onSuccess: () => {
-      setModal(true)
+    onSuccess: (data) => {
+      setModal(false)
      toast({
       variant: "sucess",
       title: "adicionado com sucesso!",
      });
+    
     },
     onError(error) {
      const { response }: any = error;
@@ -94,12 +97,16 @@ export function Modal(props:any){
      description:inputDescription,
      price:inputPrice,
     });
+  
    }
+   
   return(
-<Dialog open={modal}>
+<Dialog open={modal} >
+
   <DialogTrigger onClick={()=>{ setModal(true)}} className={`${props.cn}`}>{props.titleTrigger}</DialogTrigger>
-  <DialogContent >
-    <DialogHeader>
+  <DialogContent className="w-full " >
+  <Cross2Icon className="h-4 w-4 float-left absolute right-4 top-5 cursor-pointer" onClick={()=>{ setModal(false)}}  />
+    <DialogHeader className="mt-10">
       <DialogTitle>{props.titleModal}</DialogTitle>
       <DialogDescription className="pt-10 pb-4">
 Adicione seu item nos campos abaixo:
@@ -136,7 +143,7 @@ Adicione seu item nos campos abaixo:
   formtype="text"
   formplace="Url do produto"
   formname={{
-    ...register("inputUrl", { required: "Preencha o url" }),
+    ...register("inputUrl", { required: "Preencha a url" }),
    }}
    formerror={errors.inputUrl?.message}
   />

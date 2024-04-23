@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export function Products(props: any) {
   return (
     <main className="   flex justify-center   items-center mb-5  ">
-      <div className=" w-72  h-full m-2 p-4 xl:p-2 border-[0.1rem] border-gray-100/80 rounded-xl flex flex-col items-center">
+      <div className=" w-72  h-full m-2 p-4 xl:p-2 border-[0.1rem] border-gray-300/80 rounded-xl flex flex-col items-center">
         <Link
           preventScrollReset={true}
           className="h-full w-full"
