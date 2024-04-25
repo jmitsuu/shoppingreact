@@ -30,6 +30,7 @@ export function InfoProduct() {
    return el;
   }
  });
+ console.log(comments)
  const findComment = comments.filter(
   (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === title
  );

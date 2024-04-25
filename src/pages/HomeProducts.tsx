@@ -5,9 +5,11 @@ import { TopRated } from "@/components/TopRated";
 import { Link } from "react-router-dom";
 import { FetchProducts } from "@/api/products/FetchProducts";
 import { Spinner } from "@/components/Spinner";
+import { useRequestFull } from "@/hooks/useRequestFull";
 export function HomeProducts() {
  const { products, isLoading } = FetchProducts();
-
+ const response = useRequestFull()
+console.log(response)
  if (isLoading) {
   return (
    <div className="flex justify-center items-center ">
