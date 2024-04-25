@@ -9,10 +9,11 @@ import {
 import { arrItems } from "@/interfaces/ProductInterface";
 import { FetchProducts } from "@/api/products/FetchProducts";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/Modal";
+
 
 export function Management() {
  const { products, isLoading } = FetchProducts();
@@ -21,12 +22,15 @@ export function Management() {
 
  const getMore = () => {
   setResults(() => products.slice(0, products.length * 10));
+
  };
 
  useEffect(() => {
   if (products) {
    setResults(products.slice(0, 10));
   }
+  console.log(products)
+
  }, [products]);
  const filteredProducts =
   inputValue.length > 0
@@ -37,7 +41,7 @@ export function Management() {
  }
 
  return (
-  <div className="w-screen  container   ">
+  <div className="w-screen  px-10   ">
    <h1 className="text-gray-500 text-2xl md:text-4xl mb-20 text-center">
     Painel Administrador
    </h1>
@@ -62,9 +66,9 @@ export function Management() {
    <div className="flex gap-10">
     <Table className="   xl:min-w-[800px] border-t overflow-y-auto mb-5 ">
      {/* <TableCaption>Voce tem {cart.length} item(s) no carrinho.</TableCaption> */}
-     <TableHeader>
+     <TableHeader className="bg-gray-50 border">
       <TableRow>
-       <TableHead className="text-center">#</TableHead>
+       <TableHead className="text-center">Codigo</TableHead>
        <TableHead className="">Imagem</TableHead>
        <TableHead className="text-center">Titulo</TableHead>
        <TableHead className="text-center">Preço</TableHead>
@@ -103,8 +107,8 @@ export function Management() {
           <TableCell className="font-bold text-center">{item.title}</TableCell>
           <TableCell className="font-bold text-center">{item.price}</TableCell>
           <TableCell className="font-bold text-center flex items-center justify-center gap-x-4 ">
-           <FaPencilAlt className="text-blue-500 text-2xl" />
-           <FaTrash className="text-red-500 text-2xl" />
+           <FaPencilAlt className="text-blue-500 text-2xl cursor-pointer" />
+           <FaTrash className="text-red-500 text-2xl cursor-pointer" />
           </TableCell>
          </TableRow>
         );
@@ -120,9 +124,10 @@ export function Management() {
      </div>
     </div>
    </div>
-   <div className="w-full mt-10 flex justify-center">
+   <div className="w-full mt-10 flex ">
+   
     <Button className="" onClick={getMore}>
-     Carregar mais...
+     Carregar
     </Button>
    </div>
   </div>

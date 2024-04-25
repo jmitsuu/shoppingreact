@@ -6,6 +6,7 @@ export function FetchProducts() {
     data: products,
     isLoading,
     isError,
+    refetch
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -14,5 +15,5 @@ export function FetchProducts() {
     },
   });
 
-  return { products, isLoading, isError };
+  return { products, isLoading, isError , refetch };
 }
