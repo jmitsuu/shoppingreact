@@ -29,7 +29,7 @@ export function HomeProducts() {
     <h1 className="text-gray-500 uppercase mb-10 text-center font-bold text-3xl ">
      Moda feita para voce
     </h1>
-    <div className=" mb-32 gap-10 grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+    <div className=" mb-32 gap-10 flex flex-wrap justify-center">
      {response.slice(0, 10).map((item: arrItems) => {
       return (
        <Products

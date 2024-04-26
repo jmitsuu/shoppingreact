@@ -9,7 +9,7 @@ const response =  items.sort(
 )
 
 
- const limitedArr = response.slice(0, 5);
+ const limitedArr = response.slice(0, 4);
 
  return (
   <div className="w-screen mb-32  bg-white relative mt-10 ">
@@ -19,7 +19,7 @@ const response =  items.sort(
      <h1 className="text-gray-500 uppercase font-bold xl:text-3xl mb-10">
       Destaques
      </h1>
-     <div className=" xl:grid xl:grid-cols-5 md:grid-cols-3   p-5 ">
+     <div className=" xl:grid xl:grid-cols-4 md:grid-cols-3   ">
       {limitedArr.map((prod: arrItems) => {
        return (
         <Products

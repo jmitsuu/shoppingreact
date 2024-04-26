@@ -15,7 +15,7 @@ export function Bag() {
     );
   }
   return (
-    <div className="xl:w-full xl:min-h-[600px] flex flex-col justify-center items-center  border container rounded-xl py-10">
+    <div className="xl:w-full xl:min-h-[600px] flex gap-10  flex-wrap justify-center items-center  border container rounded-xl py-10">
       <h1 className="text-slate-600 text-2xl font-bold mb-10">
         Informações de pagamento
       </h1>

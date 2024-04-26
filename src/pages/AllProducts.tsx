@@ -87,7 +87,7 @@ export function AllProducts() {
             />
           </div>
         </div>
-        <div className=" grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10">
+        <div className=" grid xl:grid-cols-4 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10">
           {results.map((item: arrItems) => {
             return (
               <Products
