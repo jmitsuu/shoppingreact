@@ -7,10 +7,10 @@ import { FetchProducts } from "@/api/products/FetchProducts";
 import { Spinner } from "@/components/Spinner";
 import { useRequestFull } from "@/hooks/useRequestFull";
 export function HomeProducts() {
- const { products, isLoading } = FetchProducts();
+ const {isLoading } = FetchProducts();
  const response = useRequestFull()
-console.log(response)
- if (isLoading) {
+// console.log(response)
+ if (isLoading || !response) {
   return (
    <div className="flex justify-center items-center ">
     <Spinner />
@@ -23,14 +23,14 @@ console.log(response)
    <section className="min-h-screen flex-col mb-32 ">
     <div className="overflow-hidden">
      <Banner />
-     <TopRated items={products} />
+     <TopRated items={response} />
     </div>
 
     <h1 className="text-gray-500 uppercase mb-10 text-center font-bold text-3xl ">
      Moda feita para voce
     </h1>
     <div className=" mb-32 gap-10 grid xl:grid-cols-5 container md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-     {products.slice(0, 10).map((item: arrItems) => {
+     {response.slice(0, 10).map((item: arrItems) => {
       return (
        <Products
         key={item._id}

@@ -1,13 +1,15 @@
 import { ProfileForm } from "@/components/ProfileForm";
 import { Button } from "@/components/ui/button";
 import { PiLinkedinLogo } from "react-icons/pi";
-import { LiaInstagram } from "react-icons/lia";
+
+import { LiaInstagram , LiaEyeSlashSolid  } from "react-icons/lia";
 import { useForm } from "react-hook-form";
 import { toast } from "@/components/ui/use-toast";
 import { Spinner } from "@/components/Spinner";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import instance from "@/http/instance";
+import { useEffect, useState } from "react";
 
 interface typeInput {
  inputEmail?: string | "";
@@ -18,6 +20,7 @@ interface typeInput {
 
 export function SingIn() {
  const navigate = useNavigate();
+ const [openPass, setOpenPass] = useState("password")
  const mutation = useMutation({
   mutationFn: (newTodo: typeInput) => {
    return instance.post("/login", newTodo);
@@ -92,15 +95,20 @@ export function SingIn() {
        formplace="digite seu e-mail"
       />
 
+      <div className="relative">
+
       <ProfileForm
        formname={{
         ...register("inputPassword", { required: "Preencha a senha" }),
        }}
        formerror={errors.inputPassword?.message}
        formlabel="Senha"
-       formtype="password"
+       formtype={openPass}
        formplace="digite sua senha"
       />
+      <LiaEyeSlashSolid onClick={()=>{setOpenPass("text")}} className="absolute text-xl right-6 top-12 cursor-pointer" />
+      </div>
+
 
       <Button
        type="submit"

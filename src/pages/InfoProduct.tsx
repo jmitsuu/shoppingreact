@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import { useParams } from "react-router";
 import { arrItems } from "@/interfaces/ProductInterface";
 import { useCart } from "@/store/CartStore";
-import { FetchProducts } from "@/api/products/FetchProducts";
-import { FetchComments } from "@/api/comments/FetchComments";
 import { NewToogle } from "@/components/NewToogle";
 import { useState } from "react";
 import { useCount } from "@/hooks/useCount";
@@ -12,11 +10,12 @@ import { Link } from "react-router-dom";
 import { Spinner } from "@/components/Spinner";
 import { useProducCharact } from "@/hooks/useProducCharact";
 import { Error404 } from "./layouts/Error404";
+import { useRequestFull } from "@/hooks/useRequestFull";
+import { useStars } from "@/hooks/useStars";
 
 export function InfoProduct() {
  const { addToCart } = useCart();
- const { products, isLoading } = FetchProducts();
- const { comments, loadComments } = FetchComments();
+ const response = useRequestFull();
  const { colors, sizeProdu } = useProducCharact();
  const [inputColor, setInputColor] = useState("preto");
  const [inputSize, setInputSize] = useState("");
@@ -24,17 +23,19 @@ export function InfoProduct() {
  const { toast } = useToast();
  const { id: title } = useParams();
 
- if (isLoading || loadComments) return;
- const findItem = products.find((el: any) => {
+ if (!response) return;
+ const findItem = response.find((el: any) => {
   if (el.title.replaceAll(" ", "-").toLowerCase() === title) {
    return el;
   }
  });
- console.log(comments)
- const findComment = comments.filter(
-  (el: any) => el.title.replaceAll(" ", "-").toLowerCase() === title
- );
 
+ const filterVotes = findItem.comments[0].map((el: any) => el.voto);
+ const totalVote = filterVotes.reduce(
+  (acc: number, curr: number) => acc + curr,
+  0
+ );
+ console.log(totalVote / findItem.comments[0].length);
  function incrementCart() {
   if (!inputSize) {
    toast({
@@ -56,17 +57,15 @@ export function InfoProduct() {
    }
   }
  }
- if (isLoading || loadComments) {
+ if (!response) {
   return (
    <div className="flex justify-center items-center">
     <Spinner />{" "}
    </div>
   );
  }
- if(!findItem){
-  return(
-     <Error404 />
-  )
+ if (!findItem) {
+  return <Error404 />;
  }
 
  return (
@@ -82,6 +81,20 @@ export function InfoProduct() {
      </div>
      <div className=" space-y-4 md:w-96 mt-2 ">
       <h1 className="font-bold text-slate-600">{findItem.title}</h1>
+      <h2 className="text-yellow-500 font-bold flex items-center ">
+       {" "}
+       <span className="text-gray-600 ">Nota:</span>{" "}
+       {findItem.comments[0].length === 0 ? (
+        <span className="text-gray-400">Não avaliado</span>
+       ) : (
+        <span className="flex pl-2">
+         {" "}
+      
+         { useStars(Number(totalVote / findItem.comments[0].length).toFixed(1))} 
+         
+        </span>
+       )}
+      </h2>
       <p className="text-xs font-semibold text-slate-400">
        Codigo: {findItem._id}
       </p>
@@ -160,19 +173,22 @@ export function InfoProduct() {
     </h1>
 
     <div className="container mt-10 p-4   xl:w-[900px]  border-[1px] max-h-96 rounded overflow-y-auto  mb-24">
-     {!findComment.length && (
+     {!findItem.comments[0].length && (
       <div className="text-center cursor-pointer text-gray-700 font-bold hover:text-gray-500">
        Seja o primeiro a comentar
       </div>
      )}
-     {findComment.map((el: arrItems) => {
+     {findItem.comments[0].map((el: arrItems) => {
       return (
        <div
-        className=" border-[1px] rounded m-2 p-3 flex flex-col"
+        className=" border-[1px] shadow-md rounded m-2 p-3 flex flex-col"
         key={el.id_comentario}
        >
-        <div className=" flex flex-col justify-center gap-4 ">
-         <h1 className="text-[15px]">{el.name}</h1>
+        <div className=" flex flex-col justify-center gap-2 ">
+         <h1 className="text-[15px] font-bold ">{el.name}</h1>
+         <div className="text-yellow-500 flex">{ useStars(el.voto)}</div>
+      
+        
          <p className="text-gray-600 text-[14px]">{el.comentario}</p>
         </div>
        </div>

@@ -4,22 +4,12 @@ import { FetchComments } from "@/api/comments/FetchComments";
 export function TopRated({ items }: any) {
  const { comments } = FetchComments();
  if (!comments) return;
- const topRated = comments.filter((el: { voto: number }) => el.voto > 4);
- const newTopRated = topRated.map((item: arrItems) => {
-  const produInfo = items.find((el: arrItems) => el.title === item.title);
-  return {
-   _id: produInfo._id,
-   title: produInfo.title,
-   image_url: produInfo.image_url,
-   comentario: item.comentario,
-   price: produInfo.price,
-   id_comentario: item.id_comentario,
-   name: item.name,
-   voto: item.voto,
-  };
- });
+const response =  items.sort(
+  (a: { price: number }, b: { price: number }) => b.price - a.price
+)
 
- const limitedArr = newTopRated.slice(0, 5);
+
+ const limitedArr = response.slice(0, 5);
 
  return (
   <div className="w-screen mb-32  bg-white relative mt-10 ">

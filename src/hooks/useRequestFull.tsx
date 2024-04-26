@@ -1,12 +1,13 @@
 import { FetchComments } from "@/api/comments/FetchComments";
 import { FetchProducts } from "@/api/products/FetchProducts";
+import { arrItems } from "@/interfaces/ProductInterface";
 
 export function useRequestFull (){
   const {products} = FetchProducts();
   const {comments} = FetchComments();
-  if(!products) return
+  if(!products || !comments) return
 
-  const response = products.map((items:any)=>{
+  const response = products.map((items:arrItems)=>{
     const filterComments = comments.filter((el:{title:string}) => el.title === items.title);
 if(filterComments){
   return{
