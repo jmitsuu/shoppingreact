@@ -9,7 +9,7 @@ import { Spinner } from "@/components/Spinner";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import instance from "@/http/instance";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface typeInput {
  inputEmail?: string | "";
