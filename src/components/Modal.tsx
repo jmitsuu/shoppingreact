@@ -11,7 +11,7 @@ import { useState } from "react";
 import { ProfileForm } from "./ProfileForm";
 import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import instance from "@/http/instance";
 import { toast } from "./ui/use-toast";
